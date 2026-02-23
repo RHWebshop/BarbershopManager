@@ -111,7 +111,7 @@ export function Navbar() {
                   <UserIcon aria-hidden />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-56" dir="rtl">
+              <DropdownMenuContent align="end" className="w-56">
                 <DropdownMenuLabel>
                   <div className="flex flex-col space-y-1">
                     <p className="text-sm font-medium leading-none">שלום, {user?.name}</p>

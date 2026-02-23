@@ -64,5 +64,5 @@ To check the code quality across the entire workspace:
 ```bash
 pnpm -r lint
 ```
-# Deploying
+## Deploying
 Soon...

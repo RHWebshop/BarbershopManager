@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "pnpm -r --parallel dev",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "build": "pnpm -r build"
   },
   "keywords": [],
   "author": "",

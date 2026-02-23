@@ -36,18 +36,25 @@ This project is a monorepo managed by `pnpm workspace` to easily share code betw
 2. **Build Packages**
    Before running the applications, you must build the internal shared packages so that TypeScript can resolve them correctly:
    ```bash
-   pnpm -r build
+   pnpm build
    ```
    *(Alternatively, to specifically build a package: `pnpm -F @line-manager/schemas build`)*
 
 3. **Running the Applications**
    
-   To start the **frontend** client application (Vite dev server):
+   To start **both** the frontend client and the backend API simultaneously:
+   ```bash
+   pnpm dev
+   ```
+
+   **Alternatively, to start them individually:**
+
+   Frontend client application (Vite dev server):
    ```bash
    pnpm -F line-manager-client dev
    ```
 
-   To start the **backend** API application (NestJS dev server):
+   Backend API application (NestJS dev server):
    ```bash
    pnpm -F line-manager-api start:dev
    ```
@@ -57,3 +64,5 @@ To check the code quality across the entire workspace:
 ```bash
 pnpm -r lint
 ```
+# Deploying
+Soon...

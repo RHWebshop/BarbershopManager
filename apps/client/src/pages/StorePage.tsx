@@ -1,7 +1,7 @@
 import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import type { ProductCategory } from "@line-manager/types";
-import { PRODUCTS, CATEGORY_LABELS } from "@/stores/data";
+import { PRODUCTS, CATEGORY_LABELS } from "@/data/productData";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { SearchIcon } from "lucide-react";

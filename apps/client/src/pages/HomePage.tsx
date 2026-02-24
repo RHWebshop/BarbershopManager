@@ -1,10 +1,10 @@
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
-import { useLinesStore } from "@/features/lines/store";
-import { PRODUCTS, CATEGORY_LABELS } from "@/stores/data";
+import { useLinesStore } from "@/stores/bookingStore";
+import { PRODUCTS, CATEGORY_LABELS } from "@/data/productData";
 import { ScissorsIcon, ClockIcon, ArrowLeftIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useCartStore } from "@/features/cart/store";
+import { useCartStore } from "@/stores/carStore";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 // ── Placeholder user ──────────────────────────────────────────────────────────

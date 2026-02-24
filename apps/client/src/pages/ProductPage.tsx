@@ -1,6 +1,6 @@
 import { useParams, Link } from "react-router-dom";
-import { PRODUCTS, CATEGORY_LABELS } from "@/stores/data";
-import { useCartStore, selectItemQuantity } from "@/features/cart/store";
+import { PRODUCTS, CATEGORY_LABELS } from "@/data/productData";
+import { useCartStore, selectItemQuantity } from "@/stores/carStore";
 import { Button } from "@/components/ui/button";
 import {
 	ArrowRightIcon,

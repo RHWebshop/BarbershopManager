@@ -53,7 +53,7 @@ export function Navbar() {
 	return (
 		<header
 			role="banner"
-			className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60">
+			className="sticky top-0 z-50 w-full shadow-sm bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60 ">
 			<nav
 				className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 md:px-6"
 				aria-label="ניווט ראשי">
@@ -70,7 +70,7 @@ export function Navbar() {
 				</Link>
 
 				{/* Desktop nav items */}
-				<ul className="hidden items-center gap-1 md:flex">
+				<ul className="hidden w-full gap-1 md:flex">
 					{NAV_ITEMS.map((item) => (
 						<li key={item.label}>
 							<NavLink to={item.to} className={navLinkClass}>
@@ -92,7 +92,7 @@ export function Navbar() {
 						<Link to="/cart">
 							<ShoppingCartIcon aria-hidden />
 							{cartCount > 0 && (
-								<span className="absolute -top-1 -end-1 flex size-5 items-center justify-center rounded-full bg-primary text-[10px] font-medium text-primary-foreground">
+								<span className="absolute -top-1 -inset-e-1 flex size-5 items-center justify-center rounded-full bg-primary text-[10px] font-medium text-primary-foreground">
 									{cartCount}
 								</span>
 							)}

@@ -18,6 +18,7 @@ export const PRODUCTS: Product[] = [
       "תספורת מעוצבת לנשים עם ייעוץ אישי, שטיפה, גזירה ופן מקצועי. אנחנו מתמחים בכל סגנון — קצר, ארוך, שכבות ועוד.",
     price: 150,
     category: "haircut",
+    isFeatured: true,
     imageUrl: "https://images.unsplash.com/photo-1560066984-138dadb4c035?w=400&h=300&fit=crop",
   },
   {
@@ -47,16 +48,7 @@ export const PRODUCTS: Product[] = [
     category: "styling",
     imageUrl: "https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=400&h=300&fit=crop",
   },
-  {
-    id: "6",
-    name: "החלקה ברזילאית",
-    description:
-      "טיפול החלקה עם קראטין ברזילאי איכותי. מחליק, מבריק ומשקם את השיער לתקופה ממושכת.",
-    price: 600,
-    category: "treatment",
-    isFeatured: true,
-    imageUrl: "https://images.unsplash.com/photo-1522338242992-e1a54571a6d8?w=400&h=300&fit=crop",
-  },
+
   {
     id: "7",
     name: "טיפול שיקום שיער",

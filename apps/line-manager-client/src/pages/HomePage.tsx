@@ -24,7 +24,7 @@ function getGreeting() {
   const h = new Date().getHours();
   if (h < 12) return "בוקר טוב";
   if (h < 17) return "צהריים טובים";
-  return "ערב טוב";
+  return "asdad טוב";
 }
 
 // ── Component ─────────────────────────────────────────────────────────────────

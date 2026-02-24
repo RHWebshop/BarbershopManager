@@ -29,7 +29,7 @@ export function ProductPage() {
 				</div>
 				<div className="space-y-2">
 					<h1 className="text-2xl font-bold">המוצר לא נמצא</h1>
-					<p className="max-w-[300px] text-muted-foreground">
+					<p className="max-w-75 text-muted-foreground">
 						המוצר שחיפשתם אינו קיים במלאי או שהוסר מהחנות.
 					</p>
 				</div>

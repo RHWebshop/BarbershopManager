@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { MenuIcon, ShoppingCartIcon, UserIcon, LogOutIcon } from "lucide-react";
-import { useCartStore, selectTotalCount } from "@/features/cart/store";
+import { useCartStore, selectTotalCount } from "@/stores/carStore";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
@@ -19,6 +19,7 @@ import {
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
+import { useAuthActions, useUser } from "@/stores/authStore";
 
 const NAV_ITEMS = [
 	{ label: "בית", to: "/" },
@@ -36,14 +37,13 @@ const navLinkClass = ({ isActive }: { isActive: boolean }) =>
 			: "text-foreground hover:bg-accent hover:text-accent-foreground",
 	);
 
-import { useAuthStore } from "@/features/auth/store";
-
 export function Navbar() {
 	const location = useLocation();
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 	const cartCount = useCartStore(selectTotalCount);
 
-	const { user, isAuthenticated, logout } = useAuthStore();
+	const user = useUser();
+	const { logout } = useAuthActions();
 
 	const handleSignOut = () => {
 		logout();
@@ -100,7 +100,7 @@ export function Navbar() {
 					</Button>
 
 					{/* User / Login section */}
-					{isAuthenticated ? (
+					{!!user ? (
 						<DropdownMenu>
 							<DropdownMenuTrigger asChild>
 								<Button
@@ -172,7 +172,7 @@ export function Navbar() {
 									</li>
 								))}
 							</ul>
-							{isAuthenticated ? (
+							{!!user ? (
 								<div className="mt-6 border-t pt-4">
 									<div className="px-4 py-2 text-sm text-foreground font-bold">
 										שלום, {user?.name}

@@ -41,7 +41,7 @@ export function StorePage() {
 			{/* Search bar */}
 			<div className="relative">
 				<SearchIcon
-					className="pointer-events-none absolute start-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground"
+					className="pointer-events-none absolute inset-s-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground"
 					aria-hidden
 				/>
 				<input
@@ -63,17 +63,21 @@ export function StorePage() {
 				className="flex flex-wrap gap-2"
 				role="tablist"
 				aria-label="סינון לפי קטגוריה">
-				{CATEGORIES.map((cat) => (
-					<Button
-						key={cat}
-						variant={activeCategory === cat ? "default" : "outline"}
-						size="sm"
-						role="tab"
-						aria-selected={activeCategory === cat}
-						onClick={() => setActiveCategory(cat)}>
-						{CATEGORY_LABELS[cat]}
-					</Button>
-				))}
+				{CATEGORIES.map((category) => {
+					const isActive = activeCategory === category;
+					return (
+						<Button
+							key={category}
+							variant={isActive ? "default" : "outline"}
+							size="sm"
+							role="tab"
+							className={isActive ? "border-transparent border" : ""}
+							aria-selected={isActive}
+							onClick={() => setActiveCategory(category)}>
+							{CATEGORY_LABELS[category]}
+						</Button>
+					);
+				})}
 			</div>
 
 			{/* Product grid */}

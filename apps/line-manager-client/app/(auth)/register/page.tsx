@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { format } from "date-fns";
@@ -30,7 +30,7 @@ import { signUpSchema, type SignUpFormValues } from "@line-manager/schemas";
 import { useSendOtp } from "@/features/auth/api";
 
 export function SignUpPage() {
-	const navigate = useNavigate();
+	const router = useRouter();
 
 	const { mutateAsync: sendOtp } = useSendOtp();
 	const form = useForm<SignUpFormValues>({

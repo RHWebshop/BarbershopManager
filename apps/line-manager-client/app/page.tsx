@@ -1,11 +1,12 @@
 import { useMemo } from "react";
-import { Link } from "react-router-dom";
+
 import { useLinesStore } from "@/features/lines/store";
 import { PRODUCTS, CATEGORY_LABELS } from "@/features/store/data";
 import { ScissorsIcon, ClockIcon, ArrowLeftIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useCartStore } from "@/features/cart/store";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
+import Link from "next/link";
 
 // ── Placeholder user ──────────────────────────────────────────────────────────
 const MOCK_USER = { name: "ישראל" };
@@ -24,7 +25,7 @@ function getGreeting() {
 	const h = new Date().getHours();
 	if (h < 12) return "בוקר טוב";
 	if (h < 17) return "צהריים טובים";
-	return "asdad טוב";
+	return "ערב טוב";
 }
 
 // ── Component ─────────────────────────────────────────────────────────────────
@@ -83,7 +84,7 @@ export function HomePage() {
 							</div>
 						</div>
 						<Button variant="outline" size="sm" asChild>
-							<Link to="/line">כל התורים</Link>
+							<Link href="/line">כל התורים</Link>
 						</Button>
 					</div>
 				) : (
@@ -95,7 +96,7 @@ export function HomePage() {
 							</p>
 						</div>
 						<Button asChild size="sm">
-							<Link to="/line">קביעת תור</Link>
+							<Link href="/line">קביעת תור</Link>
 						</Button>
 					</div>
 				)}
@@ -108,7 +109,7 @@ export function HomePage() {
 						מוצרים מובחרים
 					</h2>
 					<Link
-						to="/store"
+						href="/store"
 						className="flex items-center gap-1 text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
 						לחנות המלאה
 						<ArrowLeftIcon className="size-4" />
@@ -120,7 +121,9 @@ export function HomePage() {
 						<div
 							key={product.id}
 							className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all hover:shadow-md">
-							<Link to={`/store/${product.id}`} className="overflow-hidden">
+							<Link
+								href={`/store/${product.id}`}
+								className="overflow-hidden">
 								<AspectRatio
 									ratio={4 / 3}
 									className="overflow-hidden bg-muted">
@@ -136,7 +139,7 @@ export function HomePage() {
 									<span className="text-xs font-medium text-muted-foreground">
 										{CATEGORY_LABELS[product.category]}
 									</span>
-									<Link to={`/store/${product.id}`}>
+									<Link href={`/store/${product.id}`}>
 										<p className="mt-0.5 font-bold leading-tight hover:text-primary transition-colors">
 											{product.name}
 										</p>

@@ -1,4 +1,3 @@
-import { useNavigate, useSearchParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
@@ -14,10 +13,11 @@ import { useAuthStore } from "@/features/auth/store";
 import { Loader2, ShieldCheckIcon } from "lucide-react";
 import { verifyOtpSchema, type VerifyOtpFormValues } from "@line-manager/schemas";
 import { useVerifyOtp } from "@/features/auth/api";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export function VerifyOtpPage() {
-	const navigate = useNavigate();
-	const [searchParams] = useSearchParams();
+	const router = useRouter();
+	const searchParams = useSearchParams();
 	const login = useAuthStore((state) => state.login);
 
 	const phone = searchParams.get("phone") || "";
@@ -46,7 +46,7 @@ export function VerifyOtpPage() {
 
 			if (response.success) {
 				login(response.user);
-				navigate("/", { replace: true });
+				router.replace("/");
 			}
 		} catch (error: any) {
 			form.setError("otp", {

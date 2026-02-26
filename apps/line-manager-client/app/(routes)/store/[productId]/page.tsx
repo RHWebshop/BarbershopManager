@@ -1,4 +1,3 @@
-import { useParams, Link } from "react-router-dom";
 import { PRODUCTS, CATEGORY_LABELS } from "@/features/store/data";
 import { useCartStore, selectItemQuantity } from "@/features/cart/store";
 import { Button } from "@/components/ui/button";
@@ -12,10 +11,10 @@ import {
 	InfoIcon,
 } from "lucide-react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
+import Link from "next/link";
 
-export function ProductPage() {
-	const { id } = useParams<{ id: string }>();
-	const product = PRODUCTS.find((p) => p.id === id);
+export function ProductPage({ productId }: { productId: string }) {
+	const product = PRODUCTS.find((p) => p.id === productId);
 
 	const addToCart = useCartStore((s) => s.addToCart);
 	const updateQuantity = useCartStore((s) => s.updateQuantity);
@@ -34,7 +33,7 @@ export function ProductPage() {
 					</p>
 				</div>
 				<Button variant="outline" asChild className="mt-4">
-					<Link to="/store">
+					<Link href="/store">
 						<ArrowRightIcon className="me-2 size-4 transition-transform group-hover:-translate-x-1" />
 						חזרה לחנות
 					</Link>
@@ -67,7 +66,7 @@ export function ProductPage() {
 			<nav
 				aria-label="Breadcrumb"
 				className="flex items-center gap-2 text-sm text-muted-foreground">
-				<Link to="/store" className="hover:text-primary hover:underline">
+				<Link href="/store" className="hover:text-primary hover:underline">
 					חנות
 				</Link>
 				<ChevronLeftIcon className="size-4 shrink-0" />
@@ -172,7 +171,7 @@ export function ProductPage() {
 									סה&quot;כ בעגלה: ₪{product.price * quantity}
 								</span>
 								<Link
-									to="/cart"
+									href="/cart"
 									className="ms-auto text-sm font-bold underline transition-opacity hover:opacity-80">
 									מעבר לסל
 								</Link>

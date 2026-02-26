@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+
 import { useCartStore, selectTotalCount, selectTotalPrice } from "@/features/cart/store";
 import { Button } from "@/components/ui/button";
 import {
@@ -12,6 +12,7 @@ import {
 	CreditCardIcon,
 	ArrowLeftIcon,
 } from "lucide-react";
+import Link from "next/link";
 
 export function Cart() {
 	const items = useCartStore((s) => s.items);
@@ -30,7 +31,7 @@ export function Cart() {
 					הוסיפו מוצרים מהחנות כדי לראותם כאן
 				</p>
 				<Button asChild>
-					<Link to="/store">לחנות</Link>
+					<Link href="/store">לחנות</Link>
 				</Button>
 			</div>
 		);
@@ -67,7 +68,7 @@ export function Cart() {
 								className="flex gap-4 p-4 transition-colors hover:bg-muted/30 sm:p-6">
 								{/* Product image */}
 								<Link
-									to={`/store/${product.id}`}
+									href={`/store/${product.id}`}
 									className="relative size-24 shrink-0 overflow-hidden rounded-lg border border-border bg-muted sm:size-32">
 									<img
 										src={product.imageUrl}
@@ -82,7 +83,7 @@ export function Cart() {
 									<div className="space-y-1">
 										<div className="flex items-start justify-between gap-4">
 											<Link
-												to={`/store/${product.id}`}
+												href={`/store/${product.id}`}
 												className="text-lg font-bold leading-tight hover:text-primary hover:underline">
 												{product.name}
 											</Link>
@@ -148,7 +149,7 @@ export function Cart() {
 					</div>
 
 					<Button variant="outline" asChild className="gap-2">
-						<Link to="/store">
+						<Link href="/store">
 							<ArrowLeftIcon className="size-4" />
 							המשך בקניות
 						</Link>

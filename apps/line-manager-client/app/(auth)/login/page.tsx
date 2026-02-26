@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2, SmartphoneIcon } from "lucide-react";
@@ -17,7 +17,7 @@ import { signInSchema, type SignInFormValues } from "@line-manager/schemas";
 import { useSendOtp } from "@/features/auth/api";
 
 export function SignInPage() {
-	const navigate = useNavigate();
+	const router = useRouter();
 
 	const { mutateAsync: sendOtp } = useSendOtp();
 	const form = useForm<SignInFormValues>({
@@ -30,7 +30,9 @@ export function SignInPage() {
 	const onSubmit = async (data: SignInFormValues) => {
 		try {
 			await sendOtp(data);
-			navigate(`/verify-otp?phone=${encodeURIComponent(data.phone)}&mode=signin`);
+			router.push(
+				`/verify-otp?phone=${encodeURIComponent(data.phone)}&mode=signin`,
+			);
 		} catch (error: any) {
 			form.setError("phone", { message: error.message || "שגיאה בשליחת הקוד" });
 		}
@@ -90,7 +92,7 @@ export function SignInPage() {
 					<Button
 						variant="link"
 						className="p-0 text-primary"
-						onClick={() => navigate("/sign-up")}
+						onClick={() => router.push("/sign-up")}
 						disabled={form.formState.isSubmitting}>
 						להרשמה
 					</Button>

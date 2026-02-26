@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import type { ProductCategory } from "@line-manager/types";
 import { PRODUCTS, CATEGORY_LABELS } from "@/features/store/data";
 import { cn } from "@/lib/utils";
@@ -87,7 +87,7 @@ export function StorePage() {
 					{filtered.map((product) => (
 						<Link
 							key={product.id}
-							to={`/store/${product.id}`}
+							href={`/store/${product.id}`}
 							className={cn(
 								"group overflow-hidden rounded-lg border border-border bg-card transition-shadow",
 								"hover:shadow-md focus-visible:outline focus-visible:ring-2 focus-visible:ring-ring",

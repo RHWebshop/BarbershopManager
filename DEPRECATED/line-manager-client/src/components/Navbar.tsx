@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { MenuIcon, ShoppingCartIcon, UserIcon, LogOutIcon } from "lucide-react";
-import { useCartStore, selectTotalCount } from "@/features/cart/store";
+import { useCartStore, selectTotalCount } from "@/features/cart/cartStore";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
@@ -36,7 +36,7 @@ const navLinkClass = ({ isActive }: { isActive: boolean }) =>
       : "text-foreground hover:bg-accent hover:text-accent-foreground",
   );
 
-import { useAuthStore } from "@/features/auth/store";
+import { useAuthStore } from "@/features/auth/authStore";
 
 export function Navbar() {
   const location = useLocation();

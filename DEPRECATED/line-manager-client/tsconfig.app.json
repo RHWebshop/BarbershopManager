@@ -32,5 +32,5 @@
 		"src",
 		"../../apps/line-manager-client/app/lib/api.ts",
 		"../../apps/line-manager-client/app/lib/query.ts"
-	]
+, "../../apps/line-manager-client/app/stores/cartStore.ts", "../../apps/line-manager-client/app/data/storeData.ts", "../../apps/line-manager-client/app/data/bookingsData.ts"	]
 }

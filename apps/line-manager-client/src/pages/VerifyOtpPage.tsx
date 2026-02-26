@@ -7,18 +7,20 @@ import { Form, FormControl, FormField, FormItem, FormMessage } from "@/component
 import { useAuthStore } from "@/features/auth/store";
 import { Loader2, ShieldCheckIcon } from "lucide-react";
 import { verifyOtpSchema, type VerifyOtpFormValues } from "@line-manager/schemas";
+import { useVerifyOtp } from "@/features/auth/api";
 
 export function VerifyOtpPage() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const login = useAuthStore((state) => state.login);
-  
+
   const phone = searchParams.get("phone") || "";
   const mode = searchParams.get("mode") || "signin";
   const name = searchParams.get("name") || "משתמש זמני";
   const gender = searchParams.get("gender") || undefined;
   const dob = searchParams.get("dob") || undefined;
 
+  const { mutateAsync: verifyOtp } = useVerifyOtp();
   const form = useForm<VerifyOtpFormValues>({
     resolver: zodResolver(verifyOtpSchema),
     defaultValues: {
@@ -27,24 +29,22 @@ export function VerifyOtpPage() {
   });
 
   const onSubmit = async (data: VerifyOtpFormValues) => {
-    // Simulate network request
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    try {
+      const response = await verifyOtp({
+        ...data,
+        phone,
+        name: mode === "signup" ? name : undefined,
+        gender: mode === "signup" ? gender : undefined,
+        dob: mode === "signup" ? dob : undefined,
+      } as any);
 
-    if (data.otp !== "111111") {
-      form.setError("otp", { type: "manual", message: "קוד השגיאה שגוי. אנא נסה 111111." });
-      return;
+      if (response.success) {
+        login(response.user);
+        navigate("/", { replace: true });
+      }
+    } catch (error: any) {
+      form.setError("otp", { type: "manual", message: error.message || "קוד אימות שגוי" });
     }
-
-    // Success! Log the user in
-    login({
-      id: Math.random().toString(36).substr(2, 9),
-      phone,
-      name: mode === "signup" ? name : "משתמש רשום",
-      gender,
-      dob,
-    });
-
-    navigate("/", { replace: true });
   };
 
   return (

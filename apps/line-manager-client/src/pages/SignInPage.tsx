@@ -7,10 +7,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { signInSchema, type SignInFormValues } from "@line-manager/schemas";
+import { useSendOtp } from "@/features/auth/api";
 
 export function SignInPage() {
   const navigate = useNavigate();
 
+  const { mutateAsync: sendOtp } = useSendOtp();
   const form = useForm<SignInFormValues>({
     resolver: zodResolver(signInSchema),
     defaultValues: {
@@ -19,9 +21,12 @@ export function SignInPage() {
   });
 
   const onSubmit = async (data: SignInFormValues) => {
-    // Simulate network request
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    navigate(`/verify-otp?phone=${encodeURIComponent(data.phone)}&mode=signin`);
+    try {
+      await sendOtp(data);
+      navigate(`/verify-otp?phone=${encodeURIComponent(data.phone)}&mode=signin`);
+    } catch (error: any) {
+      form.setError("phone", { message: error.message || "שגיאה בשליחת הקוד" });
+    }
   };
 
   return (
@@ -63,7 +68,7 @@ export function SignInPage() {
             </Button>
           </form>
         </Form>
-        
+
         <div className="text-center text-sm text-muted-foreground">
           עוד אין לך חשבון?{" "}
           <Button variant="link" className="p-0 text-primary" onClick={() => navigate("/sign-up")} disabled={form.formState.isSubmitting}>

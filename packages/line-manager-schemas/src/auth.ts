@@ -7,8 +7,8 @@ export const signInSchema = z.object({
 export const signUpSchema = z.object({
   name: z.string().min(2, "שם מלא חייב להכיל לפחות 2 תווים"),
   phone: z.string().regex(/^05\d{1}-?[0-9]{7}$/, "מספר טלפון לא תקין"),
-  dob: z.date({
-    error: "יש לבחור תאריך לידה",
+  dob: z.coerce.date({
+    message: "יש לבחור תאריך לידה",
   }),
   gender: z.string().min(1, "יש לבחור מגדר"),
 });

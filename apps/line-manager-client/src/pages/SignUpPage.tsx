@@ -14,31 +14,37 @@ import { Calendar } from "@/components/ui/calendar";
 import { cn } from "@/lib/utils";
 
 import { signUpSchema, type SignUpFormValues } from "@line-manager/schemas";
+import { useSendOtp } from "@/features/auth/api";
 
 export function SignUpPage() {
   const navigate = useNavigate();
 
+  const { mutateAsync: sendOtp } = useSendOtp();
   const form = useForm<SignUpFormValues>({
     resolver: zodResolver(signUpSchema),
     defaultValues: {
       name: "",
       phone: "",
       gender: "",
+      dob: new Date(),
     },
   });
 
   const onSubmit = async (data: SignUpFormValues) => {
-    // Simulate network request
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    const params = new URLSearchParams({
-      mode: "signup",
-      name: data.name,
-      phone: data.phone,
-      dob: data.dob.toISOString().slice(0, 10),
-      gender: data.gender,
-    });
-    
-    navigate(`/verify-otp?${params.toString()}`);
+    try {
+      await sendOtp(data);
+      const params = new URLSearchParams({
+        mode: "signup",
+        name: data.name,
+        phone: data.phone,
+        dob: data.dob.toISOString().slice(0, 10),
+        gender: data.gender,
+      });
+
+      navigate(`/verify-otp?${params.toString()}`);
+    } catch (error: any) {
+      form.setError("root", { message: error.message || "שגיאה בשליחת הקוד" });
+    }
   };
 
   return (
@@ -163,13 +169,15 @@ export function SignUpPage() {
               )}
             />
 
+            {form.formState.errors.root && <p className="text-sm text-red-400">{form.formState.errors.root.message}</p>}
+
             <Button type="submit" className="w-full text-lg font-bold mt-2" disabled={form.formState.isSubmitting}>
               המשך לאימות
               {form.formState.isSubmitting && <Loader2 className="ml-2 size-5 animate-spin" />}
             </Button>
           </form>
         </Form>
-        
+
         <div className="text-center text-sm text-muted-foreground">
           כבר יש לך חשבון?{" "}
           <Button variant="link" className="p-0 text-primary" onClick={() => navigate("/sign-in")} disabled={form.formState.isSubmitting}>

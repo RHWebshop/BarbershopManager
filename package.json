@@ -9,6 +9,10 @@
 		"lint:fix": "eslint . --fix",
 		"build": "pnpm -r build"
 	},
+	"workspaces": [
+		"packages/*",
+		"apps/*"
+	],
 	"keywords": [],
 	"author": "",
 	"license": "ISC",

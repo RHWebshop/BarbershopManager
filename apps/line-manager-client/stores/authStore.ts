@@ -30,6 +30,6 @@ const useAuthStore = create<AuthState>()(
 		}
 	)
 );
-export const useAuthStoreActions = () => useAuthStore((s) => s.actions);
-export const useAuthStoreIsOTP = () => useAuthStore((s) => s.isOTP);
-export const useAuthStoreUser = () => useAuthStore((s) => s.user);
+export const useAuthActions = () => useAuthStore((s) => s.actions);
+export const useAuthIsOTP = () => useAuthStore((s) => s.isOTP);
+export const useAuthUser = () => useAuthStore((s) => s.user);

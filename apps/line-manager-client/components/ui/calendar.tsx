@@ -5,7 +5,7 @@ import { DayPicker, getDefaultClassNames, type DayButton } from "react-day-picke
 import { cn } from "@/lib/utils";
 import { Button, buttonVariants } from "@/components/ui/button";
 
-function Calendar({
+export default function Calendar({
 	className,
 	classNames,
 	showOutsideDays = true,

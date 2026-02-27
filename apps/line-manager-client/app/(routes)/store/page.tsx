@@ -1,11 +1,12 @@
 import { useState, useMemo } from "react";
 import Link from "next/link";
 import type { ProductCategory } from "@line-manager/types";
-import { PRODUCTS, CATEGORY_LABELS } from "@/features/store/data";
+import { PRODUCTS, CATEGORY_LABELS } from "@/data/storeData";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { SearchIcon } from "lucide-react";
-import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { AspectRatio } from "@/components/ui";
+import Image from "next/image";
 
 const CATEGORIES: Array<ProductCategory | "all"> = ["all", "haircut", "color", "styling", "treatment", "product"];
 
@@ -31,7 +32,7 @@ export function StorePage() {
 			{/* Search bar */}
 			<div className="relative">
 				<SearchIcon
-					className="pointer-events-none absolute start-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground"
+					className="pointer-events-none absolute inset-s-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground"
 					aria-hidden
 				/>
 				<input
@@ -82,7 +83,7 @@ export function StorePage() {
 							)}
 						>
 							<AspectRatio ratio={4 / 3} className="overflow-hidden bg-muted">
-								<img src={product.imageUrl} alt={product.name} className="size-full object-contain" loading="lazy" />
+								<Image src={product.imageUrl} alt={product.name} className="size-full object-contain" loading="lazy" />
 							</AspectRatio>
 							<div className="space-y-1 p-4">
 								<div className="flex items-start justify-between gap-2">

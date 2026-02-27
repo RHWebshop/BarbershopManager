@@ -1,6 +1,7 @@
+"use client";
 import { useState } from "react";
 import { MenuIcon, ShoppingCartIcon, UserIcon, LogOutIcon } from "lucide-react";
-import { useCartStore, selectTotalCount } from "@/features/cart/cartStore";
+// import { useCartStore, selectTotalCount } from "@/features/cart/cartStore";
 
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
@@ -13,9 +14,10 @@ import {
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
-import { useAuthStore } from "@/features/auth/authStore";
+// import { useAuthStore } from "@/features/auth/authStore";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useCartTotalProducts } from "@/stores/cartStore";
 
 const NAV_ITEMS = [
 	{ label: "בית", href: "/" },
@@ -34,12 +36,12 @@ const navLinkClass = (isActive: boolean) =>
 export default function Navbar() {
 	const pathname = usePathname();
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-	const cartCount = useCartStore(selectTotalCount);
+	const cartCount = useCartTotalProducts();
 
-	const { user, isAuthenticated, logout } = useAuthStore();
+	// const { user, isAuthenticated, logout } = useAuthStore();
 
 	const handleSignOut = () => {
-		logout();
+		// logout();
 		setMobileMenuOpen(false);
 	};
 
@@ -79,13 +81,7 @@ export default function Navbar() {
 				{/* Right side actions - Cart and User menu */}
 				<div className="flex items-center gap-2">
 					{/* Cart button - links to cart page */}
-					<Button
-						variant="ghost"
-						size="icon"
-						className="relative"
-						aria-label={`עגלת קניות, ${cartCount} פריטים`}
-						asChild
-					>
+					<Button variant="ghost" size="icon" className="relative" asChild>
 						<Link href="/cart">
 							<ShoppingCartIcon aria-hidden />
 							{cartCount > 0 && (
@@ -97,7 +93,7 @@ export default function Navbar() {
 					</Button>
 
 					{/* User / Login section */}
-					{isAuthenticated ? (
+					{/* {isAuthenticated ? (
 						<DropdownMenu>
 							<DropdownMenuTrigger asChild>
 								<Button variant="ghost" size="icon" aria-label="תפריט משתמש">
@@ -128,7 +124,7 @@ export default function Navbar() {
 						<Button variant="outline" size="sm" asChild>
 							<Link href="/sign-in">התחברות</Link>
 						</Button>
-					)}
+					)} */}
 
 					{/* Mobile menu - Sheet */}
 					<Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
@@ -160,7 +156,7 @@ export default function Navbar() {
 									</li>
 								))}
 							</ul>
-							{isAuthenticated ? (
+							{/* {isAuthenticated ? (
 								<div className="mt-6 border-t pt-4">
 									<div className="px-4 py-2 text-sm text-foreground font-bold">שלום, {user?.name}</div>
 									<button
@@ -180,7 +176,7 @@ export default function Navbar() {
 										<Link href="/sign-in">התחברות / הרשמה</Link>
 									</Button>
 								</div>
-							)}
+							)} */}
 						</SheetContent>
 					</Sheet>
 				</div>

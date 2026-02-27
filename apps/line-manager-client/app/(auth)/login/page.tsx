@@ -1,25 +1,20 @@
+"use client";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2, SmartphoneIcon } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import {
-	Form,
-	FormControl,
-	FormField,
-	FormItem,
-	FormLabel,
-	FormMessage,
-} from "@/components/ui/form";
+
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { signInSchema, type SignInFormValues } from "@line-manager/schemas";
-import { useSendOtp } from "@/features/auth/api";
+import { Input } from "@/components/ui";
+// import { useSendOtp } from "@/features/auth/api";
 
 export function SignInPage() {
 	const router = useRouter();
 
-	const { mutateAsync: sendOtp } = useSendOtp();
+	// const { mutateAsync: sendOtp } = useSendOtp();
 	const form = useForm<SignInFormValues>({
 		resolver: zodResolver(signInSchema),
 		defaultValues: {
@@ -29,10 +24,8 @@ export function SignInPage() {
 
 	const onSubmit = async (data: SignInFormValues) => {
 		try {
-			await sendOtp(data);
-			router.push(
-				`/verify-otp?phone=${encodeURIComponent(data.phone)}&mode=signin`,
-			);
+			// await sendOtp(data);
+			router.push(`/verify-otp?phone=${encodeURIComponent(data.phone)}&mode=signin`);
 		} catch (error: any) {
 			form.setError("phone", { message: error.message || "שגיאה בשליחת הקוד" });
 		}
@@ -42,12 +35,8 @@ export function SignInPage() {
 		<div className="flex min-h-[60vh] items-center justify-center">
 			<div className="w-full max-w-md space-y-8 rounded-2xl border border-border bg-card p-8 shadow-sm">
 				<div className="space-y-2 text-center">
-					<h1 className="text-3xl font-extrabold tracking-tight">
-						ברוכים הבאים
-					</h1>
-					<p className="text-muted-foreground">
-						הזינו מספר טלפון כדי להתחבר או להירשם
-					</p>
+					<h1 className="text-3xl font-extrabold tracking-tight">ברוכים הבאים</h1>
+					<p className="text-muted-foreground">הזינו מספר טלפון כדי להתחבר או להירשם</p>
 				</div>
 
 				<Form {...form}>
@@ -60,13 +49,7 @@ export function SignInPage() {
 									<FormLabel>מספר טלפון</FormLabel>
 									<FormControl>
 										<div className="relative">
-											<Input
-												type="tel"
-												placeholder="05X-XXXXXXX"
-												className="pl-10 text-right"
-												dir="rtl"
-												{...field}
-											/>
+											<Input type="tel" placeholder="05X-XXXXXXX" className="pl-10 text-right" dir="rtl" {...field} />
 											<SmartphoneIcon className="absolute left-3 top-2.5 size-5 text-muted-foreground" />
 										</div>
 									</FormControl>
@@ -75,14 +58,9 @@ export function SignInPage() {
 							)}
 						/>
 
-						<Button
-							type="submit"
-							className="w-full text-lg font-bold"
-							disabled={form.formState.isSubmitting}>
+						<Button type="submit" className="w-full text-lg font-bold" disabled={form.formState.isSubmitting}>
 							המשך
-							{form.formState.isSubmitting && (
-								<Loader2 className="ml-2 size-5 animate-spin" />
-							)}
+							{form.formState.isSubmitting && <Loader2 className="ml-2 size-5 animate-spin" />}
 						</Button>
 					</form>
 				</Form>
@@ -93,7 +71,8 @@ export function SignInPage() {
 						variant="link"
 						className="p-0 text-primary"
 						onClick={() => router.push("/sign-up")}
-						disabled={form.formState.isSubmitting}>
+						disabled={form.formState.isSubmitting}
+					>
 						להרשמה
 					</Button>
 				</div>

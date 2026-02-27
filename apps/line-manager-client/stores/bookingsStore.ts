@@ -43,8 +43,8 @@ const MOCK_BOOKINGS: Booking[] = [
 
 let nextId = 1;
 
-// TODO: refactor.
-export const useBookingsStore = create<BookingsState>((set) => ({
+
+const useBookingsStore = create<BookingsState>((set) => ({
 	bookings: MOCK_BOOKINGS,
 	actions: {
 		addBooking: (booking) =>

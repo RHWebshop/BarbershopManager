@@ -20,7 +20,7 @@ interface CartState {
 	items: CartItem[];
 	actions: CartActions;
 }
-// TODO: refactor
+
 const useCartStore = create<CartState>((set) => ({
 	items: [],
 	actions: {

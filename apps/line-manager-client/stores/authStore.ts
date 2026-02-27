@@ -10,8 +10,7 @@ type AuthState = {
 	isOTP: boolean;
 	actions: AuthActions;
 };
-
-export const useAuthStore = create<AuthState>()(
+const useAuthStore = create<AuthState>()(
 	persist(
 		(set) => ({
 			user: null,

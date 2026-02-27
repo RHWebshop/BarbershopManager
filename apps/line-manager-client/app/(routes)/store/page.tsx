@@ -7,14 +7,7 @@ import { Button } from "@/components/ui/button";
 import { SearchIcon } from "lucide-react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 
-const CATEGORIES: Array<ProductCategory | "all"> = [
-	"all",
-	"haircut",
-	"color",
-	"styling",
-	"treatment",
-	"product",
-];
+const CATEGORIES: Array<ProductCategory | "all"> = ["all", "haircut", "color", "styling", "treatment", "product"];
 
 export function StorePage() {
 	const [search, setSearch] = useState("");
@@ -23,8 +16,7 @@ export function StorePage() {
 	const filtered = useMemo(() => {
 		return PRODUCTS.filter((p) => {
 			const matchesSearch = p.name.toLowerCase().includes(search.toLowerCase());
-			const matchesCategory =
-				activeCategory === "all" || p.category === activeCategory;
+			const matchesCategory = activeCategory === "all" || p.category === activeCategory;
 			return matchesSearch && matchesCategory;
 		});
 	}, [search, activeCategory]);
@@ -33,9 +25,7 @@ export function StorePage() {
 		<div className="space-y-10">
 			<div className="space-y-2">
 				<h1 className="text-4xl font-extrabold tracking-tight">חנות</h1>
-				<p className="text-lg text-muted-foreground">
-					גלו את השירותים והמוצרים שלנו
-				</p>
+				<p className="text-lg text-muted-foreground">גלו את השירותים והמוצרים שלנו</p>
 			</div>
 
 			{/* Search bar */}
@@ -52,17 +42,14 @@ export function StorePage() {
 					className={cn(
 						"w-full rounded-md border border-input bg-background py-2 ps-10 pe-4 text-sm",
 						"placeholder:text-muted-foreground",
-						"focus-visible:outline focus-visible:ring-2 focus-visible:ring-ring",
+						"focus-visible:outline focus-visible:ring-2 focus-visible:ring-ring"
 					)}
 					aria-label="חיפוש מוצרים"
 				/>
 			</div>
 
 			{/* Category filters */}
-			<div
-				className="flex flex-wrap gap-2"
-				role="tablist"
-				aria-label="סינון לפי קטגוריה">
+			<div className="flex flex-wrap gap-2" role="tablist" aria-label="סינון לפי קטגוריה">
 				{CATEGORIES.map((cat) => (
 					<Button
 						key={cat}
@@ -70,7 +57,8 @@ export function StorePage() {
 						size="sm"
 						role="tab"
 						aria-selected={activeCategory === cat}
-						onClick={() => setActiveCategory(cat)}>
+						onClick={() => setActiveCategory(cat)}
+					>
 						{CATEGORY_LABELS[cat]}
 					</Button>
 				))}
@@ -90,26 +78,16 @@ export function StorePage() {
 							href={`/store/${product.id}`}
 							className={cn(
 								"group overflow-hidden rounded-lg border border-border bg-card transition-shadow",
-								"hover:shadow-md focus-visible:outline focus-visible:ring-2 focus-visible:ring-ring",
-							)}>
-							<AspectRatio
-								ratio={4 / 3}
-								className="overflow-hidden bg-muted">
-								<img
-									src={product.imageUrl}
-									alt={product.name}
-									className="size-full object-contain"
-									loading="lazy"
-								/>
+								"hover:shadow-md focus-visible:outline focus-visible:ring-2 focus-visible:ring-ring"
+							)}
+						>
+							<AspectRatio ratio={4 / 3} className="overflow-hidden bg-muted">
+								<img src={product.imageUrl} alt={product.name} className="size-full object-contain" loading="lazy" />
 							</AspectRatio>
 							<div className="space-y-1 p-4">
 								<div className="flex items-start justify-between gap-2">
-									<h2 className="font-semibold leading-tight">
-										{product.name}
-									</h2>
-									<span className="shrink-0 font-bold text-primary">
-										₪{product.price}
-									</span>
+									<h2 className="font-semibold leading-tight">{product.name}</h2>
+									<span className="shrink-0 font-bold text-primary">₪{product.price}</span>
 								</div>
 								<span className="inline-block rounded-full bg-muted px-2.5 py-0.5 text-xs font-medium text-muted-foreground">
 									{CATEGORY_LABELS[product.category]}

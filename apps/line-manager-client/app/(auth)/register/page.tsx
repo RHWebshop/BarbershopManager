@@ -7,21 +7,8 @@ import { CalendarIcon, Loader2, SmartphoneIcon, UserIcon } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import {
-	Form,
-	FormControl,
-	FormField,
-	FormItem,
-	FormLabel,
-	FormMessage,
-} from "@/components/ui/form";
-import {
-	Select,
-	SelectContent,
-	SelectItem,
-	SelectTrigger,
-	SelectValue,
-} from "@/components/ui/select";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
 import { cn } from "@/lib/utils";
@@ -65,9 +52,7 @@ export function SignUpPage() {
 			<div className="w-full max-w-md space-y-8 rounded-2xl border border-border bg-card p-8 shadow-sm">
 				<div className="space-y-2 text-center">
 					<h1 className="text-3xl font-extrabold tracking-tight">הרשמה חדשה</h1>
-					<p className="text-muted-foreground">
-						הזינו את הפרטים שלכם כדי להתחיל
-					</p>
+					<p className="text-muted-foreground">הזינו את הפרטים שלכם כדי להתחיל</p>
 				</div>
 
 				<Form {...form}>
@@ -82,11 +67,7 @@ export function SignUpPage() {
 									<FormControl>
 										<div className="relative">
 											<UserIcon className="absolute left-3 top-2 size-5 text-muted-foreground" />
-											<Input
-												placeholder="ישראל ישראלי"
-												className="pl-10"
-												{...field}
-											/>
+											<Input placeholder="ישראל ישראלי" className="pl-10" {...field} />
 										</div>
 									</FormControl>
 									<FormMessage />
@@ -103,13 +84,7 @@ export function SignUpPage() {
 									<FormLabel>מספר טלפון</FormLabel>
 									<FormControl>
 										<div className="relative">
-											<Input
-												type="tel"
-												placeholder="05X-XXXXXXX"
-												className="pl-10 text-right"
-												dir="rtl"
-												{...field}
-											/>
+											<Input type="tel" placeholder="05X-XXXXXXX" className="pl-10 text-right" dir="rtl" {...field} />
 											<SmartphoneIcon className="absolute left-3 top-2 size-5 text-muted-foreground" />
 										</div>
 									</FormControl>
@@ -130,11 +105,8 @@ export function SignUpPage() {
 											<FormControl>
 												<Button
 													variant={"outline"}
-													className={cn(
-														"w-full pr-3 text-right font-normal",
-														!field.value &&
-															"text-muted-foreground",
-													)}>
+													className={cn("w-full pr-3 text-right font-normal", !field.value && "text-muted-foreground")}
+												>
 													{field.value ? (
 														format(field.value, "PPP", {
 															locale: he,
@@ -146,17 +118,12 @@ export function SignUpPage() {
 												</Button>
 											</FormControl>
 										</PopoverTrigger>
-										<PopoverContent
-											className="w-auto p-0"
-											align="start">
+										<PopoverContent className="w-auto p-0" align="start">
 											<Calendar
 												mode="single"
 												selected={field.value}
 												onSelect={field.onChange}
-												disabled={(date) =>
-													date > new Date() ||
-													date < new Date("1900-01-01")
-												}
+												disabled={(date) => date > new Date() || date < new Date("1900-01-01")}
 												initialFocus
 												captionLayout="dropdown"
 												startMonth={new Date(1900, 0)}
@@ -176,13 +143,9 @@ export function SignUpPage() {
 							render={({ field }) => (
 								<FormItem>
 									<FormLabel>מגדר</FormLabel>
-									<Select
-										onValueChange={field.onChange}
-										defaultValue={field.value}>
+									<Select onValueChange={field.onChange} defaultValue={field.value}>
 										<FormControl>
-											<SelectTrigger
-												className="w-full text-right"
-												dir="rtl">
+											<SelectTrigger className="w-full text-right" dir="rtl">
 												<SelectValue placeholder="בחרו מגדר" />
 											</SelectTrigger>
 										</FormControl>
@@ -197,20 +160,11 @@ export function SignUpPage() {
 							)}
 						/>
 
-						{form.formState.errors.root && (
-							<p className="text-sm text-red-400">
-								{form.formState.errors.root.message}
-							</p>
-						)}
+						{form.formState.errors.root && <p className="text-sm text-red-400">{form.formState.errors.root.message}</p>}
 
-						<Button
-							type="submit"
-							className="w-full text-lg font-bold mt-2"
-							disabled={form.formState.isSubmitting}>
+						<Button type="submit" className="w-full text-lg font-bold mt-2" disabled={form.formState.isSubmitting}>
 							המשך לאימות
-							{form.formState.isSubmitting && (
-								<Loader2 className="ml-2 size-5 animate-spin" />
-							)}
+							{form.formState.isSubmitting && <Loader2 className="ml-2 size-5 animate-spin" />}
 						</Button>
 					</form>
 				</Form>
@@ -221,7 +175,8 @@ export function SignUpPage() {
 						variant="link"
 						className="p-0 text-primary"
 						onClick={() => navigate("/sign-in")}
-						disabled={form.formState.isSubmitting}>
+						disabled={form.formState.isSubmitting}
+					>
 						להתחברות
 					</Button>
 				</div>

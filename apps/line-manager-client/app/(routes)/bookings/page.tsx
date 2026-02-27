@@ -4,14 +4,7 @@ import { LINE_SERVICES, TIME_SLOTS } from "@/features/lines/data";
 import { Calendar } from "@/components/ui/calendar";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import {
-	CalendarIcon,
-	CheckCircle2Icon,
-	ClockIcon,
-	ScissorsIcon,
-	XCircleIcon,
-	PlusIcon,
-} from "lucide-react";
+import { CalendarIcon, CheckCircle2Icon, ClockIcon, ScissorsIcon, XCircleIcon, PlusIcon } from "lucide-react";
 
 export function Bookings() {
 	const lines = useLinesStore((s) => s.lines);
@@ -91,9 +84,7 @@ export function Bookings() {
 			<div className="flex items-start justify-between">
 				<div className="space-y-2">
 					<h1 className="text-4xl font-extrabold tracking-tight">התורים שלי</h1>
-					<p className="text-lg text-muted-foreground">
-						צפו בתורים הקיימים או קבעו תור חדש
-					</p>
+					<p className="text-lg text-muted-foreground">צפו בתורים הקיימים או קבעו תור חדש</p>
 				</div>
 				{upcoming.length === 0 && !showForm && (
 					<Button onClick={() => setShowForm(true)} className="gap-2">
@@ -104,9 +95,7 @@ export function Bookings() {
 				{upcoming.length > 0 && !showForm && (
 					<div className="hidden items-center gap-2 rounded-lg bg-muted/50 px-3 py-1.5 md:flex">
 						<CheckCircle2Icon className="size-4 text-primary" />
-						<span className="text-xs font-bold text-muted-foreground uppercase tracking-wider">
-							יש לך תור קרוב
-						</span>
+						<span className="text-xs font-bold text-muted-foreground uppercase tracking-wider">יש לך תור קרוב</span>
 					</div>
 				)}
 			</div>
@@ -118,16 +107,10 @@ export function Bookings() {
 						<CheckCircle2Icon className="size-6 shrink-0" />
 						<div className="space-y-0.5">
 							<p className="font-bold leading-none">התור נקבע בהצלחה!</p>
-							<p className="text-xs opacity-80">
-								קבענו לך מקום ביומן, נתראה שם.
-							</p>
+							<p className="text-xs opacity-80">קבענו לך מקום ביומן, נתראה שם.</p>
 						</div>
 					</div>
-					<Button
-						variant="ghost"
-						size="sm"
-						onClick={() => setJustBooked(false)}
-						className="hover:bg-primary/10">
+					<Button variant="ghost" size="sm" onClick={() => setJustBooked(false)} className="hover:bg-primary/10">
 						סגור
 					</Button>
 				</div>
@@ -138,8 +121,7 @@ export function Bookings() {
 				<div className="flex items-center gap-3 rounded-xl border border-primary/20 bg-primary/5 p-4 text-primary">
 					<CalendarIcon className="size-5 shrink-0" />
 					<p className="text-sm font-medium">
-						יש לך כבר תור מאושר במערכת. ניתן לקבוע תור חדש רק לאחר סיום או
-						ביטול התור הקיים.
+						יש לך כבר תור מאושר במערכת. ניתן לקבוע תור חדש רק לאחר סיום או ביטול התור הקיים.
 					</p>
 				</div>
 			)}
@@ -157,7 +139,8 @@ export function Bookings() {
 								setSelectedService(null);
 								setSelectedDate(undefined);
 								setSelectedTime(null);
-							}}>
+							}}
+						>
 							ביטול
 						</Button>
 					</div>
@@ -177,8 +160,9 @@ export function Bookings() {
 										"rounded-xl border p-4 text-start transition-all hover:shadow-md",
 										selectedService === service.id
 											? "border-primary bg-primary/5 ring-2 ring-primary"
-											: "border-border bg-card hover:border-primary/30",
-									)}>
+											: "border-border bg-card hover:border-primary/30"
+									)}
+								>
 									<p className="font-bold">{service.name}</p>
 									<div className="mt-1 flex items-center gap-3 text-sm text-muted-foreground">
 										<span>{service.duration} דקות</span>
@@ -201,10 +185,7 @@ export function Bookings() {
 									mode="single"
 									selected={selectedDate}
 									onSelect={setSelectedDate}
-									disabled={[
-										{ before: today },
-										{ after: twoWeeksFromNow },
-									]}
+									disabled={[{ before: today }, { after: twoWeeksFromNow }]}
 									defaultMonth={today}
 									startMonth={today}
 									endMonth={twoWeeksFromNow}
@@ -229,8 +210,9 @@ export function Bookings() {
 											"rounded-lg border px-4 py-2 text-sm font-medium transition-all",
 											selectedTime === time
 												? "border-primary bg-primary text-primary-foreground"
-												: "border-border bg-card hover:border-primary/30 hover:shadow-sm",
-										)}>
+												: "border-border bg-card hover:border-primary/30 hover:shadow-sm"
+										)}
+									>
 										{time}
 									</button>
 								))}
@@ -246,18 +228,17 @@ export function Bookings() {
 								<p className="text-muted-foreground">
 									{selectedDate &&
 										formatDate(
-											`${selectedDate.getFullYear()}-${String(selectedDate.getMonth() + 1).padStart(2, "0")}-${String(selectedDate.getDate()).padStart(2, "0")}`,
+											`${selectedDate.getFullYear()}-${String(selectedDate.getMonth() + 1).padStart(2, "0")}-${String(selectedDate.getDate()).padStart(2, "0")}`
 										)}{" "}
 									בשעה {selectedTime}
 								</p>
-								<p className="mt-1 text-sm font-medium text-muted-foreground">
-									₪{serviceLookup?.price}
-								</p>
+								<p className="mt-1 text-sm font-medium text-muted-foreground">₪{serviceLookup?.price}</p>
 							</div>
 							<Button
 								size="lg"
 								onClick={handleConfirm}
-								className="h-12 gap-2 rounded-xl text-lg font-bold shadow-lg shadow-primary/20">
+								className="h-12 gap-2 rounded-xl text-lg font-bold shadow-lg shadow-primary/20"
+							>
 								<CheckCircle2Icon className="size-5" />
 								אישור קביעת תור
 							</Button>
@@ -268,9 +249,7 @@ export function Bookings() {
 
 			{/* ── Upcoming Lines ── */}
 			<section className="space-y-4">
-				<h2 className="text-sm font-bold uppercase tracking-wider text-muted-foreground">
-					תורים קרובים
-				</h2>
+				<h2 className="text-sm font-bold uppercase tracking-wider text-muted-foreground">תורים קרובים</h2>
 
 				{upcoming.length === 0 ? (
 					<div className="rounded-xl border border-dashed border-border p-8 text-center text-muted-foreground">
@@ -283,7 +262,8 @@ export function Bookings() {
 						{upcoming.map((line) => (
 							<div
 								key={line.id}
-								className="flex items-center justify-between gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:shadow-sm">
+								className="flex items-center justify-between gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:shadow-sm"
+							>
 								<div className="flex items-center gap-4">
 									<div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
 										<ScissorsIcon className="size-5" />
@@ -299,7 +279,8 @@ export function Bookings() {
 									variant="ghost"
 									size="sm"
 									onClick={() => cancelLine(line.id)}
-									className="gap-1 text-muted-foreground hover:text-destructive">
+									className="gap-1 text-muted-foreground hover:text-destructive"
+								>
 									<XCircleIcon className="size-4" />
 									ביטול
 								</Button>
@@ -312,14 +293,13 @@ export function Bookings() {
 			{/* ── Past Lines ── */}
 			{past.length > 0 && (
 				<section className="space-y-4">
-					<h2 className="text-sm font-bold uppercase tracking-wider text-muted-foreground">
-						היסטוריית תורים
-					</h2>
+					<h2 className="text-sm font-bold uppercase tracking-wider text-muted-foreground">היסטוריית תורים</h2>
 					<div className="space-y-2">
 						{past.map((line) => (
 							<div
 								key={line.id}
-								className="flex items-center gap-4 rounded-xl border border-border bg-muted/30 p-4 opacity-70">
+								className="flex items-center gap-4 rounded-xl border border-border bg-muted/30 p-4 opacity-70"
+							>
 								<div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-muted text-muted-foreground">
 									<ScissorsIcon className="size-4" />
 								</div>

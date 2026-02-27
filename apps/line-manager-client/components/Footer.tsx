@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { InstagramIcon, FacebookIcon, MailIcon } from "lucide-react";
 
-export function Footer() {
+export default function Footer() {
 	const currentYear = new Date().getFullYear();
 
 	return (
@@ -10,24 +10,19 @@ export function Footer() {
 				<div className="flex flex-col items-center justify-between gap-6 md:flex-row">
 					{/* Navigation Links */}
 					<nav className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
-						<Link
-							href="/contact"
-							className="text-sm text-muted-foreground transition-colors hover:text-primary">
+						<Link href="/contact" className="text-sm text-muted-foreground transition-colors hover:text-primary">
 							צור קשר
 						</Link>
-						<Link
-							href="/accessibility"
-							className="text-sm text-muted-foreground transition-colors hover:text-primary">
+						<Link href="/accessibility" className="text-sm text-muted-foreground transition-colors hover:text-primary">
 							הצהרת נגישות
 						</Link>
-						<Link
-							href="/privacy"
-							className="text-sm text-muted-foreground transition-colors hover:text-primary">
+						<Link href="/privacy" className="text-sm text-muted-foreground transition-colors hover:text-primary">
 							מדיניות פרטיות
 						</Link>
 						<a
 							href="mailto:office@example.com"
-							className="flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary">
+							className="flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
+						>
 							<MailIcon className="size-4" />
 							office@example.com
 						</a>
@@ -41,7 +36,8 @@ export function Footer() {
 								target="_blank"
 								rel="noreferrer"
 								className="text-muted-foreground transition-colors hover:text-primary"
-								aria-label="אינסטגרם">
+								aria-label="אינסטגרם"
+							>
 								<InstagramIcon className="size-5" />
 							</a>
 							<a
@@ -49,16 +45,15 @@ export function Footer() {
 								target="_blank"
 								rel="noreferrer"
 								className="text-muted-foreground transition-colors hover:text-primary"
-								aria-label="פייסבוק">
+								aria-label="פייסבוק"
+							>
 								<FacebookIcon className="size-5" />
 							</a>
 						</div>
 
 						<div className="h-4 w-px bg-border hidden md:block" />
 
-						<p className="text-xs text-muted-foreground">
-							© {currentYear} כל הזכויות שמורות
-						</p>
+						<p className="text-xs text-muted-foreground">© {currentYear} כל הזכויות שמורות</p>
 					</div>
 				</div>
 			</div>

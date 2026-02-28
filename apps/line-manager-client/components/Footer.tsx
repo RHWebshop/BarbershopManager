@@ -1,9 +1,8 @@
-import Link from "next/link";
-import { InstagramIcon, FacebookIcon, MailIcon } from "lucide-react";
-
+import { MailIcon } from "lucide-react";
+import { Facebook, Instagram } from "./ui/icons";
+import { Link } from "./ui";
+const currentYear = new Date().getFullYear();
 export default function Footer() {
-	const currentYear = new Date().getFullYear();
-
 	return (
 		<footer className="w-full border-t border-border bg-card py-6 text-card-foreground">
 			<div className="mx-auto max-w-6xl px-4 md:px-6">
@@ -19,36 +18,34 @@ export default function Footer() {
 						<Link href="/privacy" className="text-sm text-muted-foreground transition-colors hover:text-primary">
 							מדיניות פרטיות
 						</Link>
-						<a
+						<Link
 							href="mailto:office@example.com"
 							className="flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
 						>
 							<MailIcon className="size-4" />
 							office@example.com
-						</a>
+						</Link>
 					</nav>
 
 					{/* Social Icons & Copyright */}
 					<div className="flex items-center gap-6">
 						<div className="flex items-center gap-4">
-							<a
+							<Link
 								href="https://instagram.com"
-								target="_blank"
-								rel="noreferrer"
+								external
 								className="text-muted-foreground transition-colors hover:text-primary"
 								aria-label="אינסטגרם"
 							>
-								<InstagramIcon className="size-5" />
-							</a>
-							<a
+								<Instagram className="size-5" />
+							</Link>
+							<Link
 								href="https://facebook.com"
-								target="_blank"
-								rel="noreferrer"
+								external
 								className="text-muted-foreground transition-colors hover:text-primary"
 								aria-label="פייסבוק"
 							>
-								<FacebookIcon className="size-5" />
-							</a>
+								<Facebook className="size-5" />
+							</Link>
 						</div>
 
 						<div className="h-4 w-px bg-border hidden md:block" />

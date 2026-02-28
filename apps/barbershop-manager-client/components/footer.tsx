@@ -1,3 +1,4 @@
+"use client";
 import { MailIcon } from "lucide-react";
 import { Facebook, Instagram } from "./ui/icons";
 import { Link } from "./ui";

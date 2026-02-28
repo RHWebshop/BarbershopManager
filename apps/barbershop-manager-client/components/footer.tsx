@@ -1,7 +1,7 @@
-"use client";
 import { MailIcon } from "lucide-react";
 import { Facebook, Instagram } from "./ui/icons";
-import { Link } from "./ui";
+import Link from "./ui/link";
+
 const currentYear = new Date().getFullYear();
 export default function Footer() {
 	return (

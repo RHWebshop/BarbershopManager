@@ -8,7 +8,8 @@ import { Button } from "@/components/ui/button";
 
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { signInSchema, type SignInFormValues } from "@barbershop-manager/schemas";
-import { Input } from "@/components/ui";
+import Input from "@/components/ui/input";
+
 // import { useSendOtp } from "@/features/auth/api";
 
 export function SignInPage() {

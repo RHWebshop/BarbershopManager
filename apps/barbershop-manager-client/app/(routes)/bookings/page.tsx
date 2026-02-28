@@ -1,15 +1,16 @@
+"use client";
 import { useState, useMemo } from "react";
-import { useLinesStore } from "@/features/lines/store";
-import { LINE_SERVICES, TIME_SLOTS } from "@/features/lines/data";
+
 import { Calendar } from "@/components/ui/calendar";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { CalendarIcon, CheckCircle2Icon, ClockIcon, ScissorsIcon, XCircleIcon, PlusIcon } from "lucide-react";
+import { useBookingActions, useBookings } from "@/stores/bookings-store";
+import { BookingsData, TIME_SLOTS } from "@/data/bookingsData";
 
 export function Bookings() {
-	const lines = useLinesStore((s) => s.lines);
-	const addLine = useLinesStore((s) => s.addLine);
-	const cancelLine = useLinesStore((s) => s.cancelLine);
+	const { addBooking, cancelBooking } = useBookingActions();
+	const bookings = useBookings();
 
 	// ── Booking form state ──
 	const [selectedService, setSelectedService] = useState<string | null>(null);
@@ -32,16 +33,16 @@ export function Bookings() {
 	}, []);
 
 	const { upcoming, past } = useMemo(() => {
-		const up = lines
+		const up = bookings
 			.filter((l) => l.date >= todayStr && l.status === "confirmed")
 			.sort((a, b) => a.date.localeCompare(b.date) || a.time.localeCompare(b.time));
-		const pa = lines
+		const pa = bookings
 			.filter((l) => l.date < todayStr || l.status === "cancelled")
 			.sort((a, b) => b.date.localeCompare(a.date));
 		return { upcoming: up, past: pa };
-	}, [lines, todayStr]);
+	}, [bookings, todayStr]);
 
-	const serviceLookup = LINE_SERVICES.find((s) => s.id === selectedService);
+	const serviceLookup = BookingsData.find((s) => s.id === selectedService);
 
 	const canConfirm = selectedService && selectedDate && selectedTime;
 
@@ -53,7 +54,7 @@ export function Bookings() {
 		const day = String(selectedDate.getDate()).padStart(2, "0");
 		const dateStr = `${year}-${month}-${day}`;
 
-		addLine({
+		addBooking({
 			serviceId: serviceLookup.id,
 			serviceName: serviceLookup.name,
 			date: dateStr,
@@ -152,7 +153,7 @@ export function Bookings() {
 							בחרו שירות
 						</h3>
 						<div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-							{LINE_SERVICES.map((service) => (
+							{BookingsData.map((service) => (
 								<button
 									key={service.id}
 									onClick={() => setSelectedService(service.id)}
@@ -278,7 +279,7 @@ export function Bookings() {
 								<Button
 									variant="ghost"
 									size="sm"
-									onClick={() => cancelLine(line.id)}
+									onClick={() => cancelBooking(line.id)}
 									className="gap-1 text-muted-foreground hover:text-destructive"
 								>
 									<XCircleIcon className="size-4" />

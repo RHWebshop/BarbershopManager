@@ -5,10 +5,11 @@ import { PRODUCTS, CATEGORY_LABELS } from "@/data/storeData";
 import { ScissorsIcon, ClockIcon, ArrowLeftIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-import { AspectRatio, Link } from "@/components/ui";
 import Image from "next/image";
 import { useBookings } from "@/stores/bookings-store";
 import { useCartActions } from "@/stores/cart-store";
+import Link from "@/components/ui/link";
+import AspectRatio from "@/components/ui/aspect-ratio";
 
 // ── Placeholder user ──────────────────────────────────────────────────────────
 const MOCK_USER = { name: "ישראל" };

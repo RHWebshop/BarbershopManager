@@ -1,4 +1,5 @@
-import { Footer, Navbar } from "@/components";
+import Footer from "@/components/footer";
+import Navbar from "@/components/nav-bar";
 
 export default function RouteLayout({ children }: { children: React.ReactNode }) {
 	// only check if the user is logged in, if not send them to the login page, otherwise they can see the app

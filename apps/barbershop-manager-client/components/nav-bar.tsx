@@ -18,7 +18,7 @@ import { cn } from "@/lib/utils";
 
 import { usePathname } from "next/navigation";
 import { useCartTotalProducts } from "@/stores/cart-store";
-import { Link } from "./ui";
+import Link from "./ui/link";
 
 const NAV_ITEMS = [
 	{ label: "בית", href: "/" },

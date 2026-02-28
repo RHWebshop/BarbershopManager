@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import Providers from "@/lib/query-provider";
+import QueryProvider from "@/lib/query-provider";
 
 const assistant = localFont({
 	src: "./fonts/Assistant.ttf",
@@ -22,7 +22,7 @@ export default function RootLayout({
 	return (
 		<html lang="en" className={assistant.variable}>
 			<body className="anti-aliased">
-				<Providers>{children}</Providers>
+				<QueryProvider>{children}</QueryProvider>
 			</body>
 		</html>
 	);

@@ -48,63 +48,74 @@ export function VerifyOtpPage() {
   };
 
   return (
-    <div className="flex min-h-[60vh] items-center justify-center">
-      <div className="w-full max-w-md space-y-8 rounded-2xl border border-border bg-card p-8 shadow-sm">
-        <div className="space-y-4 text-center">
-          <div className="mx-auto flex size-12 items-center justify-center rounded-full bg-primary/10 text-primary">
-            <ShieldCheckIcon className="size-6" />
-          </div>
-          <h1 className="text-3xl font-extrabold tracking-tight">אימות מספר טלפון</h1>
-          <p className="text-sm text-muted-foreground">
-            הקלידו את הקוד בן 6 הספרות שנשלח למספר <br />
-            <span className="font-bold text-foreground" dir="ltr">{phone}</span>
-          </p>
-        </div>
+    <div className="space-y-10">
+      <div className="space-y-2">
+        <h1 className="text-4xl font-extrabold tracking-tight">אימות קוד</h1>
+        <p className="text-lg text-muted-foreground">
+          כאן תוכלו להזין את הקוד שקיבלתם ב-SMS כדי לאמת את זהותכם.
+        </p>
+      </div>
 
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-            <div className="flex justify-center" dir="ltr">
-              <FormField
-                control={form.control}
-                name="otp"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormControl>
-                      <InputOTP maxLength={6} {...field}>
-                        <InputOTPGroup>
-                          <InputOTPSlot index={0} />
-                          <InputOTPSlot index={1} />
-                          <InputOTPSlot index={2} />
-                          <InputOTPSlot index={3} />
-                          <InputOTPSlot index={4} />
-                          <InputOTPSlot index={5} />
-                        </InputOTPGroup>
-                      </InputOTP>
-                    </FormControl>
-                    <FormMessage className="text-center" />
-                  </FormItem>
-                )}
-              />
+      {false && (
+        <div className="flex min-h-[60vh] items-center justify-center">
+          <div className="w-full max-w-md space-y-8 rounded-2xl border border-border bg-card p-8 shadow-sm">
+            <div className="space-y-4 text-center">
+              <div className="mx-auto flex size-12 items-center justify-center rounded-full bg-primary/10 text-primary">
+                <ShieldCheckIcon className="size-6" />
+              </div>
+              <h1 className="text-3xl font-extrabold tracking-tight">אימות מספר טלפון</h1>
+              <p className="text-sm text-muted-foreground">
+                הקלידו את הקוד בן 6 הספרות שנשלח למספר <br />
+                <span className="font-bold text-foreground" dir="ltr">{phone}</span>
+              </p>
             </div>
 
-            <Button
-              type="submit"
-              className="w-full text-lg font-bold"
-              disabled={form.formState.isSubmitting || form.watch("otp")?.length !== 6}
-            >
-              אימות קוד
-              {form.formState.isSubmitting && <Loader2 className="ml-2 size-5 animate-spin" />}
-            </Button>
-          </form>
-        </Form>
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+                <div className="flex justify-center" dir="ltr">
+                  <FormField
+                    control={form.control}
+                    name="otp"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormControl>
+                          <InputOTP maxLength={6} {...field}>
+                            <InputOTPGroup>
+                              <InputOTPSlot index={0} />
+                              <InputOTPSlot index={1} />
+                              <InputOTPSlot index={2} />
+                              <InputOTPSlot index={3} />
+                              <InputOTPSlot index={4} />
+                              <InputOTPSlot index={5} />
+                            </InputOTPGroup>
+                          </InputOTP>
+                        </FormControl>
+                        <FormMessage className="text-center" />
+                      </FormItem>
+                    )}
+                  />
+                </div>
 
-        <div className="text-center text-sm text-muted-foreground">
-          לא קיבלתם קוד?{" "}
-          <Button variant="link" className="p-0 text-primary" onClick={() => form.setValue("otp", "111111")} disabled={form.formState.isSubmitting}>
-            שליחה מחדש (הזן 111111)
-          </Button>
+                <Button
+                  type="submit"
+                  className="w-full text-lg font-bold"
+                  disabled={form.formState.isSubmitting || form.watch("otp")?.length !== 6}
+                >
+                  אימות קוד
+                  {form.formState.isSubmitting && <Loader2 className="ml-2 size-5 animate-spin" />}
+                </Button>
+              </form>
+            </Form>
+
+            <div className="text-center text-sm text-muted-foreground">
+              לא קיבלתם קוד?{" "}
+              <Button variant="link" className="p-0 text-primary" onClick={() => form.setValue("otp", "111111")} disabled={form.formState.isSubmitting}>
+                שליחה מחדש (הזן 111111)
+              </Button>
+            </div>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }

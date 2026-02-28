@@ -23,6 +23,9 @@ export function Footer() {
             <Link to="/privacy" className="text-sm text-muted-foreground transition-colors hover:text-primary">
               מדיניות פרטיות
             </Link>
+            <Link to="/store-policy" className="text-sm text-muted-foreground transition-colors hover:text-primary">
+              מדיניות החנות
+            </Link>
             <a href="mailto:office@example.com" className="flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary">
               <MailIcon className="size-4" />
               office@example.com
@@ -55,7 +58,7 @@ export function Footer() {
             <div className="h-4 w-px bg-border hidden md:block" />
             
             <p className="text-xs text-muted-foreground">
-              © {currentYear} כל הזכויות שמורות
+              © {currentYear} רואי חיילי
             </p>
           </div>
         </div>

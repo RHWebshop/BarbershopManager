@@ -27,8 +27,10 @@ export function SignInPage() {
 		try {
 			// await sendOtp(data);
 			router.push(`/verify-otp?phone=${encodeURIComponent(data.phone)}&mode=signin`);
-		} catch (error: any) {
-			form.setError("phone", { message: error.message || "שגיאה בשליחת הקוד" });
+		} catch (error: unknown) {
+			if (error instanceof Error) {
+				form.setError("phone", { message: error.message || "שגיאה בשליחת הקוד" });
+			}
 		}
 	};
 

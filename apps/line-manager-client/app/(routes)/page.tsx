@@ -7,8 +7,8 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { AspectRatio } from "@/components/ui";
 import Image from "next/image";
-import { useBookings } from "@/stores/bookingsStore";
-import { useCartActions } from "@/stores/cartStore";
+import { useBookings } from "@/stores/bookings-store";
+import { useCartActions } from "@/stores/cart-store";
 
 // ── Placeholder user ──────────────────────────────────────────────────────────
 const MOCK_USER = { name: "ישראל" };

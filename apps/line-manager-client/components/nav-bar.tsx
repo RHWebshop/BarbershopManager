@@ -17,7 +17,7 @@ import { cn } from "@/lib/utils";
 // import { useAuthStore } from "@/features/auth/authStore";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useCartTotalProducts } from "@/stores/cartStore";
+import { useCartTotalProducts } from "@/stores/cart-store";
 
 const NAV_ITEMS = [
 	{ label: "בית", href: "/" },

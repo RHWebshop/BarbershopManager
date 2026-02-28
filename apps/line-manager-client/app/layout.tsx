@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-// import { queryClient } from "../lib/query";
-// import { QueryClientProvider } from "@tanstack/react-query";
+import Providers from "@/lib/query-provider";
 
 const assistant = localFont({
 	src: "./fonts/Assistant.ttf",
@@ -22,7 +21,9 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en" className={assistant.variable}>
-			<body className="anti-aliased">{children}</body>
+			<body className="anti-aliased">
+				<Providers>{children}</Providers>
+			</body>
 		</html>
 	);
 }

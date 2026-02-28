@@ -15,9 +15,10 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
 // import { useAuthStore } from "@/features/auth/authStore";
-import Link from "next/link";
+
 import { usePathname } from "next/navigation";
 import { useCartTotalProducts } from "@/stores/cart-store";
+import { Link } from "./ui";
 
 const NAV_ITEMS = [
 	{ label: "בית", href: "/" },
@@ -55,6 +56,7 @@ export default function Navbar() {
 				aria-label="ניווט ראשי"
 			>
 				{/* Logo placeholder */}
+				{/* TODO: ask roee if to add logic to send to /admin if on /admin/* */}
 				<Link
 					href="/"
 					className={cn(

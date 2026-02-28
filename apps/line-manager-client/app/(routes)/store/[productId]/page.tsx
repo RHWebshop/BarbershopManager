@@ -10,8 +10,7 @@ import {
 	ChevronLeftIcon,
 	InfoIcon,
 } from "lucide-react";
-import { AspectRatio } from "@/components/ui";
-import Link from "next/link";
+import { AspectRatio, Link } from "@/components/ui";
 import Image from "next/image";
 
 export function ProductPage({ productId }: { productId: string }) {

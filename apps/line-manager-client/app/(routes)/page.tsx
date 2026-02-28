@@ -4,8 +4,8 @@ import { useMemo } from "react";
 import { PRODUCTS, CATEGORY_LABELS } from "@/data/storeData";
 import { ScissorsIcon, ClockIcon, ArrowLeftIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import { AspectRatio } from "@/components/ui";
+
+import { AspectRatio, Link } from "@/components/ui";
 import Image from "next/image";
 import { useBookings } from "@/stores/bookings-store";
 import { useCartActions } from "@/stores/cart-store";

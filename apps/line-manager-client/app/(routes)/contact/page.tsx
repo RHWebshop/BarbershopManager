@@ -1,3 +1,4 @@
+import { Link } from "@/components/ui";
 import { Facebook, Instagram } from "@/components/ui/icons";
 import { MailIcon, MessageCircleIcon, PhoneIcon, MapIcon, ClockIcon } from "lucide-react";
 
@@ -97,12 +98,12 @@ interface ContactCardProps {
 	value: string;
 	external?: boolean;
 }
-
+// TODO: refactor
 function ContactCard({ href, icon, label, value, external }: ContactCardProps) {
 	return (
-		<a
+		<Link
 			href={href}
-			{...(external ? { target: "_blank", rel: "noreferrer" } : {})}
+			external={external}
 			className="group flex items-center gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-primary/30 hover:shadow-md active:scale-[0.99]"
 		>
 			<div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
@@ -112,6 +113,6 @@ function ContactCard({ href, icon, label, value, external }: ContactCardProps) {
 				<p className="text-sm font-bold">{label}</p>
 				<p className="truncate text-sm text-muted-foreground">{value}</p>
 			</div>
-		</a>
+		</Link>
 	);
 }

@@ -11,8 +11,9 @@ import {
 	CreditCardIcon,
 	ArrowLeftIcon,
 } from "lucide-react";
-import Link from "next/link";
+
 import Image from "next/image";
+import { Link } from "@/components/ui";
 
 export function Cart() {
 	const items = useCartStore((s) => s.items);

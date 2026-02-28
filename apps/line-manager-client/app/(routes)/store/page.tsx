@@ -1,11 +1,10 @@
 import { useState, useMemo } from "react";
-import Link from "next/link";
 import type { ProductCategory } from "@line-manager/types";
 import { PRODUCTS, CATEGORY_LABELS } from "@/data/storeData";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { SearchIcon } from "lucide-react";
-import { AspectRatio } from "@/components/ui";
+import { AspectRatio, Link } from "@/components/ui";
 import Image from "next/image";
 
 const CATEGORIES: Array<ProductCategory | "all"> = ["all", "haircut", "color", "styling", "treatment", "product"];

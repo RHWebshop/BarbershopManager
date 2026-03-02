@@ -20,13 +20,9 @@ import { usePathname } from "next/navigation";
 
 import Link from "./ui/link";
 import { useCartQuantity } from "@/stores/cart-store";
+import { ROUTES } from "@/data/generalData";
 
-const NAV_ITEMS = [
-	{ label: "בית", href: "/" },
-	{ label: "חנות", href: "/store" },
-	{ label: "קביעת תור", href: "/bookings" },
-	{ label: "צור קשר", href: "/contact" },
-] as const;
+
 
 const navLinkClass = (isActive: boolean) =>
 	cn(
@@ -72,7 +68,7 @@ export default function Navbar() {
 
 				{/* Desktop nav items */}
 				<ul className="hidden items-center gap-1 md:flex">
-					{NAV_ITEMS.map((item) => (
+					{ROUTES.map((item) => (
 						<li key={item.label}>
 							<Link href={item.href} className={navLinkClass(pathname === item.href)}>
 								{item.label}

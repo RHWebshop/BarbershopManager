@@ -11,7 +11,7 @@ const assistant = localFont({
 
 export const metadata: Metadata = {
 	title: "Barbershop Manager",
-	description: "A simple app to manage your barbershop bookings and services.",
+	description: "A simple app to manage your barbershop appointments and services.",
 };
 
 export default function RootLayout({

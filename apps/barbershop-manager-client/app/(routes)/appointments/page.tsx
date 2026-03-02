@@ -5,14 +5,14 @@ import { Calendar } from "@/components/ui/calendar";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { CalendarIcon, CheckCircle2Icon, ClockIcon, ScissorsIcon, XCircleIcon, PlusIcon } from "lucide-react";
-import { useBookingActions, useBookings } from "@/stores/bookings-store";
-import { BookingsData, TIME_SLOTS } from "@/data/bookingsData";
+import { useAppointmentActions, useAppointments } from "@/stores/appointments-store";
+import { AppointmentsData, TIME_SLOTS } from "@/data/appointmentsData";
 
-export default function Bookings() {
-	const { addBooking, cancelBooking } = useBookingActions();
-	const bookings = useBookings();
+export default function Appointments() {
+	const { addAppointment, cancelAppointment } = useAppointmentActions();
+	const appointments = useAppointments();
 
-	// ── Booking form state ──
+	// ── Appointment form state ──
 	const [selectedService, setSelectedService] = useState<string | null>(null);
 	const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
 	const [selectedTime, setSelectedTime] = useState<string | null>(null);
@@ -25,24 +25,24 @@ export default function Bookings() {
 	const twoWeeksFromNow = new Date(today);
 	twoWeeksFromNow.setDate(twoWeeksFromNow.getDate() + 14);
 
-	// ── Separate upcoming / past lines ──
+	// ── Separate upcoming / past appointments ──
 	const todayStr = useMemo(() => {
 		const d = new Date();
 		d.setHours(0, 0, 0, 0);
 		return d.toISOString().slice(0, 10);
 	}, []);
 
-	const { upcoming, past } = useMemo(() => {
-		const up = bookings
+	const { upcomingAppointments, pastAppointments } = useMemo(() => {
+		const upcomingAppointments = appointments
 			.filter((l) => l.date >= todayStr && l.status === "confirmed")
 			.sort((a, b) => a.date.localeCompare(b.date) || a.time.localeCompare(b.time));
-		const pa = bookings
+		const pastAppointments = appointments
 			.filter((l) => l.date < todayStr || l.status === "cancelled")
 			.sort((a, b) => b.date.localeCompare(a.date));
-		return { upcoming: up, past: pa };
-	}, [bookings, todayStr]);
+		return { upcomingAppointments, pastAppointments };
+	}, [appointments, todayStr]);
 
-	const serviceLookup = BookingsData.find((s) => s.id === selectedService);
+	const serviceLookup = AppointmentsData.find((s) => s.id === selectedService);
 
 	const canConfirm = selectedService && selectedDate && selectedTime;
 
@@ -54,7 +54,7 @@ export default function Bookings() {
 		const day = String(selectedDate.getDate()).padStart(2, "0");
 		const dateStr = `${year}-${month}-${day}`;
 
-		addBooking({
+		addAppointment({
 			serviceId: serviceLookup.id,
 			serviceName: serviceLookup.name,
 			date: dateStr,
@@ -87,13 +87,13 @@ export default function Bookings() {
 					<h1 className="text-4xl font-extrabold tracking-tight">התורים שלי</h1>
 					<p className="text-lg text-muted-foreground">צפו בתורים הקיימים או קבעו תור חדש</p>
 				</div>
-				{upcoming.length === 0 && !showForm && (
+				{upcomingAppointments.length === 0 && !showForm && (
 					<Button onClick={() => setShowForm(true)} className="gap-2">
 						<PlusIcon className="size-4" />
 						קביעת תור חדש
 					</Button>
 				)}
-				{upcoming.length > 0 && !showForm && (
+				{upcomingAppointments.length > 0 && !showForm && (
 					<div className="hidden items-center gap-2 rounded-lg bg-muted/50 px-3 py-1.5 md:flex">
 						<CheckCircle2Icon className="size-4 text-primary" />
 						<span className="text-xs font-bold text-muted-foreground uppercase tracking-wider">יש לך תור קרוב</span>
@@ -118,7 +118,7 @@ export default function Bookings() {
 			)}
 
 			{/* Restriction Alert */}
-			{upcoming.length > 0 && (
+			{upcomingAppointments.length > 0 && (
 				<div className="flex items-center gap-3 rounded-xl border border-primary/20 bg-primary/5 p-4 text-primary">
 					<CalendarIcon className="size-5 shrink-0" />
 					<p className="text-sm font-medium">
@@ -127,8 +127,8 @@ export default function Bookings() {
 				</div>
 			)}
 
-			{/* ── New Booking Form ── */}
-			{showForm && upcoming.length === 0 && (
+			{/* ── New Appointment Form ── */}
+			{showForm && upcomingAppointments.length === 0 && (
 				<section className="space-y-6 rounded-2xl border border-border bg-card p-6 shadow-sm">
 					<div className="flex items-center justify-between">
 						<h2 className="text-xl font-bold">קביעת תור חדש</h2>
@@ -153,7 +153,7 @@ export default function Bookings() {
 							בחרו שירות
 						</h3>
 						<div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-							{BookingsData.map((service) => (
+							{AppointmentsData.map((service) => (
 								<button
 									key={service.id}
 									onClick={() => setSelectedService(service.id)}
@@ -248,11 +248,11 @@ export default function Bookings() {
 				</section>
 			)}
 
-			{/* ── Upcoming Bookings ── */}
+			{/* ── Upcoming Appointments ── */}
 			<section className="space-y-4">
 				<h2 className="text-sm font-bold uppercase tracking-wider text-muted-foreground">תורים קרובים</h2>
 
-				{upcoming.length === 0 ? (
+				{upcomingAppointments.length === 0 ? (
 					<div className="rounded-xl border border-dashed border-border p-8 text-center text-muted-foreground">
 						<CalendarIcon className="mx-auto mb-2 size-8" />
 						<p className="font-medium">אין תורים קרובים</p>
@@ -260,9 +260,9 @@ export default function Bookings() {
 					</div>
 				) : (
 					<div className="space-y-3">
-						{upcoming.map((line) => (
+						{upcomingAppointments.map((appointment) => (
 							<div
-								key={line.id}
+								key={appointment.id}
 								className="flex items-center justify-between gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:shadow-sm"
 							>
 								<div className="flex items-center gap-4">
@@ -270,16 +270,16 @@ export default function Bookings() {
 										<ScissorsIcon className="size-5" />
 									</div>
 									<div>
-										<p className="font-bold">{line.serviceName}</p>
+										<p className="font-bold">{appointment.serviceName}</p>
 										<p className="text-sm text-muted-foreground">
-											{formatDate(line.date)} · {line.time}
+											{formatDate(appointment.date)} · {appointment.time}
 										</p>
 									</div>
 								</div>
 								<Button
 									variant="ghost"
 									size="sm"
-									onClick={() => cancelBooking(line.id)}
+									onClick={() => cancelAppointment(appointment.id)}
 									className="gap-1 text-muted-foreground hover:text-destructive"
 								>
 									<XCircleIcon className="size-4" />
@@ -291,26 +291,26 @@ export default function Bookings() {
 				)}
 			</section>
 
-			{/* ── Past Bookings ── */}
-			{past.length > 0 && (
+			{/* ── Past Appointments ── */}
+			{pastAppointments.length > 0 && (
 				<section className="space-y-4">
 					<h2 className="text-sm font-bold uppercase tracking-wider text-muted-foreground">היסטוריית תורים</h2>
 					<div className="space-y-2">
-						{past.map((line) => (
+						{pastAppointments.map((appointment) => (
 							<div
-								key={line.id}
+								key={appointment.id}
 								className="flex items-center gap-4 rounded-xl border border-border bg-muted/30 p-4 opacity-70"
 							>
 								<div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-muted text-muted-foreground">
 									<ScissorsIcon className="size-4" />
 								</div>
 								<div className="flex-1">
-									<p className="font-medium">{line.serviceName}</p>
+									<p className="font-medium">{appointment.serviceName}</p>
 									<p className="text-sm text-muted-foreground">
-										{formatDate(line.date)} · {line.time}
+										{formatDate(appointment.date)} · {appointment.time}
 									</p>
 								</div>
-								{line.status === "cancelled" && (
+								{appointment.status === "cancelled" && (
 									<span className="rounded-full bg-destructive/10 px-2.5 py-0.5 text-xs font-medium text-destructive">
 										בוטל
 									</span>

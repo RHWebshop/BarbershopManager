@@ -1,5 +1,5 @@
 ---
-description: General ideas and workspace-wide rules for Barbershop Manager.
+description: General ideas and workspace-wide rules for LineManager
 globs: ["**/*"]
 alwaysApply: true
 ---

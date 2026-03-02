@@ -36,9 +36,9 @@ export default function HomePage() {
 	const bookings = useBookings();
 	const { addToCart } = useCartActions();
 
-	// Next upcoming confirmed line
+	// Next upcoming confirmed Booking
 	const todayStr = new Date().toISOString().slice(0, 10);
-	const nextLine = useMemo(() => {
+	const nextBooking = useMemo(() => {
 		return (
 			bookings
 				.filter((l) => l.status === "confirmed" && l.date >= todayStr)
@@ -59,26 +59,26 @@ export default function HomePage() {
 				<p className="text-lg text-muted-foreground">מרכז ניהול התורים והחנות שלך</p>
 			</div>
 
-			{/* ── Next Line ── */}
+			{/* ── Next Booking ── */}
 			<section className="space-y-3">
 				<h2 className="text-sm font-bold uppercase tracking-wider text-muted-foreground">התור הקרוב שלך</h2>
 
-				{nextLine ? (
+				{nextBooking ? (
 					<div className="flex items-center gap-5 rounded-2xl border border-border bg-card p-6 shadow-sm">
 						<div className="flex size-12 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
 							<ScissorsIcon className="size-6" />
 						</div>
 						<div className="flex-1">
-							<p className="text-xl font-bold leading-tight">{nextLine.serviceName}</p>
+							<p className="text-xl font-bold leading-tight">{nextBooking.serviceName}</p>
 							<div className="mt-1 flex items-center gap-2 text-muted-foreground">
 								<ClockIcon className="size-4" />
 								<span>
-									{formatDate(nextLine.date)} · {nextLine.time}
+									{formatDate(nextBooking.date)} · {nextBooking.time}
 								</span>
 							</div>
 						</div>
 						<Button variant="outline" size="sm" asChild>
-							<Link href="/line">כל התורים</Link>
+							<Link href="/Booking">כל התורים</Link>
 						</Button>
 					</div>
 				) : (
@@ -88,7 +88,7 @@ export default function HomePage() {
 							<p className="text-sm text-muted-foreground">קבע תור חדש עכשיו</p>
 						</div>
 						<Button asChild size="sm">
-							<Link href="/line">קביעת תור</Link>
+							<Link href="/Booking">קביעת תור</Link>
 						</Button>
 					</div>
 				)}

@@ -248,7 +248,7 @@ export default function Bookings() {
 				</section>
 			)}
 
-			{/* ── Upcoming Lines ── */}
+			{/* ── Upcoming Bookings ── */}
 			<section className="space-y-4">
 				<h2 className="text-sm font-bold uppercase tracking-wider text-muted-foreground">תורים קרובים</h2>
 
@@ -291,7 +291,7 @@ export default function Bookings() {
 				)}
 			</section>
 
-			{/* ── Past Lines ── */}
+			{/* ── Past Bookings ── */}
 			{past.length > 0 && (
 				<section className="space-y-4">
 					<h2 className="text-sm font-bold uppercase tracking-wider text-muted-foreground">היסטוריית תורים</h2>

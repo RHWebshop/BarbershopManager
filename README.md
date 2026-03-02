@@ -1,6 +1,6 @@
-# Line Manager (BarbershopManager)
+# Barbershop Manager (BarbershopManager)
 
-Line Manager is a full-stack platform built for managing lines, appointments, and store functionality.
+Barbershop Manager is a full-stack platform built for managing lines, appointments, and store functionality.
 
 ## Requirements
 
@@ -26,7 +26,7 @@ This project is a monorepo managed by `pnpm workspace` to easily share code betw
 ### Packages
 
 - `packages/barbershop-manager-schemas`: Shared Zod validation schemas (e.g. authentication, products).
-- `packages/barbershop-manager-types`: Shared TypeScript interfaces and types (e.g. Users, Lines).
+- `packages/barbershop-manager-types`: Shared TypeScript interfaces and types (e.g. Users, Bookings).
 - `packages/barbershop-manager-utils`: Shared utilities and helper functions.
 
 ## Setup Instructions

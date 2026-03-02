@@ -24,7 +24,7 @@ import { useCartQuantity } from "@/stores/cart-store";
 const NAV_ITEMS = [
 	{ label: "בית", href: "/" },
 	{ label: "חנות", href: "/store" },
-	{ label: "קביעת תור", href: "/bookings" },
+	{ label: "קביעת תור", href: "/appointments" },
 	{ label: "צור קשר", href: "/contact" },
 ] as const;
 

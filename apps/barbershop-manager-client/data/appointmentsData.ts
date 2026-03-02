@@ -1,11 +1,11 @@
-export type BookingType = {
+export type AppointmentType = {
 	id: string;
 	name: string;
 	duration: number;
 	price: number;
 };
 
-export const BookingsData: BookingType[] = [
+export const AppointmentsData: AppointmentType[] = [
 	{ id: "haircut-men", name: "תספורת גברים", duration: 30, price: 80 },
 	{ id: "haircut-women", name: "תספורת נשים", duration: 60, price: 150 },
 	{ id: "beard-trim", name: "עיצוב זקן", duration: 20, price: 50 },

@@ -6,7 +6,7 @@ import { ScissorsIcon, ClockIcon, ArrowLeftIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 import Image from "next/image";
-import { useBookings } from "@/stores/bookings-store";
+import { useAppointments } from "@/stores/appointments-store";
 import { useCartActions } from "@/stores/cart-store";
 import Link from "@/components/ui/link";
 import AspectRatio from "@/components/ui/aspect-ratio";
@@ -33,18 +33,18 @@ function getGreeting() {
 
 // ── Component ─────────────────────────────────────────────────────────────────
 export default function HomePage() {
-	const bookings = useBookings();
+	const appointments = useAppointments();
 	const { addToCart } = useCartActions();
 
-	// Next upcoming confirmed Booking
+	// Next upcoming confirmed Appointment
 	const todayStr = new Date().toISOString().slice(0, 10);
-	const nextBooking = useMemo(() => {
+	const nextAppointment = useMemo(() => {
 		return (
-			bookings
+			appointments
 				.filter((l) => l.status === "confirmed" && l.date >= todayStr)
 				.sort((a, b) => a.date.localeCompare(b.date) || a.time.localeCompare(b.time))[0] ?? null
 		);
-	}, [bookings, todayStr]);
+	}, [appointments, todayStr]);
 
 	// Featured products
 	const featuredProducts = useMemo(() => PRODUCTS.filter((p) => p.isFeatured), []);
@@ -59,26 +59,26 @@ export default function HomePage() {
 				<p className="text-lg text-muted-foreground">מרכז ניהול התורים והחנות שלך</p>
 			</div>
 
-			{/* ── Next Booking ── */}
+			{/* ── Next Appointment ── */}
 			<section className="space-y-3">
 				<h2 className="text-sm font-bold uppercase tracking-wider text-muted-foreground">התור הקרוב שלך</h2>
 
-				{nextBooking ? (
+				{nextAppointment ? (
 					<div className="flex items-center gap-5 rounded-2xl border border-border bg-card p-6 shadow-sm">
 						<div className="flex size-12 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
 							<ScissorsIcon className="size-6" />
 						</div>
 						<div className="flex-1">
-							<p className="text-xl font-bold leading-tight">{nextBooking.serviceName}</p>
+							<p className="text-xl font-bold leading-tight">{nextAppointment.serviceName}</p>
 							<div className="mt-1 flex items-center gap-2 text-muted-foreground">
 								<ClockIcon className="size-4" />
 								<span>
-									{formatDate(nextBooking.date)} · {nextBooking.time}
+									{formatDate(nextAppointment.date)} · {nextAppointment.time}
 								</span>
 							</div>
 						</div>
 						<Button variant="outline" size="sm" asChild>
-							<Link href="/Booking">כל התורים</Link>
+							<Link href="/Appointment">כל התורים</Link>
 						</Button>
 					</div>
 				) : (
@@ -88,7 +88,7 @@ export default function HomePage() {
 							<p className="text-sm text-muted-foreground">קבע תור חדש עכשיו</p>
 						</div>
 						<Button asChild size="sm">
-							<Link href="/Booking">קביעת תור</Link>
+							<Link href="/Appointment">קביעת תור</Link>
 						</Button>
 					</div>
 				)}

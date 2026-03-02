@@ -1,8 +1,8 @@
-import { Link } from "@/components/ui";
 import { Facebook, Instagram } from "@/components/ui/icons";
+import Link from "@/components/ui/link";
 import { MailIcon, MessageCircleIcon, PhoneIcon, MapIcon, ClockIcon } from "lucide-react";
 
-export function Contact() {
+export default function Contact() {
 	return (
 		<div className="space-y-10">
 			{/* Page Header */}

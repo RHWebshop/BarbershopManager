@@ -66,6 +66,8 @@ export const useCartActions = () => useCartStore((state) => state.actions);
 // all products
 export const useCartProducts = () => useCartStore((state) => state.items);
 
+export const useCartQuantity = () => useCartStore((state) => state.items.reduce((sum, item) => sum + item.quantity, 0));
+
 // specific product - return null if not found
 export const useCartProductById = (productId: string) =>
 	useCartStore((state) => state.items.find((item) => item.product.id === productId)?.product ?? null);
@@ -73,16 +75,12 @@ export const useCartProductById = (productId: string) =>
 // total unique products in cart
 export const useCartTotalUniqueProducts = () => useCartStore((state) => state.items.length);
 
-// total quantity of all products in cart
-export const useCartTotalProducts = () =>
-	useCartStore((state) => state.items.reduce((sum, item) => sum + item.quantity, 0));
-
 // total price of all products in cart
-export const useCartTotalPrice = () =>
+export const useCartPrice = () =>
 	useCartStore((state) => state.items.reduce((sum, item) => sum + item.product.price * item.quantity, 0));
 
 // quantity of specific product in cart, return 0 if not found
-export const useCartItemQuantity = (productId: string) =>
+export const useCartProductQuantity = (productId: string) =>
 	useCartStore((state) => {
 		return state.items.find((item) => item.product.id === productId)?.quantity ?? 0;
 	});

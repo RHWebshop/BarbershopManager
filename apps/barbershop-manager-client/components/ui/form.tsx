@@ -15,6 +15,7 @@ import {
 
 import { cn } from "@/lib/utils";
 import Label from "./label";
+import { createContext } from "react";
 
 const Form = FormProvider;
 
@@ -25,7 +26,7 @@ type FormFieldContextValue<
 	name: TName;
 };
 
-const FormFieldContext = React.createContext<FormFieldContextValue>({} as FormFieldContextValue);
+const FormFieldContext = createContext<FormFieldContextValue>({} as FormFieldContextValue);
 
 const FormField = <
 	TFieldValues extends FieldValues = FieldValues,

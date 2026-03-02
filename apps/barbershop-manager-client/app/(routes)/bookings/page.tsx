@@ -8,7 +8,7 @@ import { CalendarIcon, CheckCircle2Icon, ClockIcon, ScissorsIcon, XCircleIcon, P
 import { useBookingActions, useBookings } from "@/stores/bookings-store";
 import { BookingsData, TIME_SLOTS } from "@/data/bookingsData";
 
-export function Bookings() {
+export default function Bookings() {
 	const { addBooking, cancelBooking } = useBookingActions();
 	const bookings = useBookings();
 

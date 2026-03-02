@@ -1,5 +1,5 @@
+"use client";
 import { PRODUCTS, CATEGORY_LABELS } from "@/data/storeData";
-import { useCartStore, selectItemQuantity } from "@/features/cart/store";
 import { Button } from "@/components/ui/button";
 import {
 	ArrowRightIcon,
@@ -10,15 +10,19 @@ import {
 	ChevronLeftIcon,
 	InfoIcon,
 } from "lucide-react";
-import { AspectRatio, Link } from "@/components/ui";
+
 import Image from "next/image";
-
-export function ProductPage({ productId }: { productId: string }) {
+import Link from "@/components/ui/link";
+import AspectRatio from "@/components/ui/aspect-ratio";
+import { useCartActions, useCartProductQuantity } from "@/stores/cart-store";
+const productId = "1"; // Replace with dynamic ID as needed
+export default function ProductPage({ params }: { params: { productId: string } }) {
+	// const { productId } = await params;
+	console.log("Rendering ProductPage for productId:", productId);
 	const product = PRODUCTS.find((p) => p.id === productId);
-
-	const addToCart = useCartStore((s) => s.addToCart);
-	const updateQuantity = useCartStore((s) => s.updateQuantity);
-	const quantity = useCartStore(selectItemQuantity(id ?? ""));
+	console.log(product);
+	const { addToCart, updateQuantity } = useCartActions();
+	const quantity = useCartProductQuantity(productId);
 
 	if (!product) {
 		return (
@@ -72,7 +76,7 @@ export function ProductPage({ productId }: { productId: string }) {
 			<div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
 				<div className="w-full">
 					<AspectRatio ratio={4 / 3} className="overflow-hidden rounded-2xl bg-muted shadow-xl">
-						<Image src={product.imageUrl} alt={product.name} className="size-full object-contain" />
+						<Image src={product.imageUrl} alt={product.name} fill className="size-full object-contain" />
 						<div className="absolute inset-0 pointer-events-none ring-1 ring-inset ring-black/10" />
 					</AspectRatio>
 				</div>

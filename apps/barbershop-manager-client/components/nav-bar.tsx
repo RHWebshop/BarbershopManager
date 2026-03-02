@@ -17,13 +17,14 @@ import { cn } from "@/lib/utils";
 // import { useAuthStore } from "@/features/auth/authStore";
 
 import { usePathname } from "next/navigation";
-import { useCartTotalProducts } from "@/stores/cart-store";
+
 import Link from "./ui/link";
+import { useCartQuantity } from "@/stores/cart-store";
 
 const NAV_ITEMS = [
 	{ label: "בית", href: "/" },
 	{ label: "חנות", href: "/store" },
-	{ label: "קביעת תור", href: "/line" },
+	{ label: "קביעת תור", href: "/bookings" },
 	{ label: "צור קשר", href: "/contact" },
 ] as const;
 
@@ -37,7 +38,7 @@ const navLinkClass = (isActive: boolean) =>
 export default function Navbar() {
 	const pathname = usePathname();
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-	const cartCount = useCartTotalProducts();
+	const cartQuantity = useCartQuantity();
 
 	// const { user, isAuthenticated, logout } = useAuthStore();
 
@@ -86,9 +87,9 @@ export default function Navbar() {
 					<Button variant="ghost" size="icon" className="relative" asChild>
 						<Link href="/cart">
 							<ShoppingCartIcon aria-hidden />
-							{cartCount > 0 && (
+							{cartQuantity > 0 && (
 								<span className="absolute -top-1 -inset-e-1 flex size-5 items-center justify-center rounded-full bg-primary text-[10px] font-medium text-primary-foreground">
-									{cartCount}
+									{cartQuantity}
 								</span>
 							)}
 						</Link>

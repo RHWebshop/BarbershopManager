@@ -1,15 +1,19 @@
+"use client";
+
 import { useState, useMemo } from "react";
 import type { ProductCategory } from "@barbershop-manager/types";
 import { PRODUCTS, CATEGORY_LABELS } from "@/data/storeData";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { SearchIcon } from "lucide-react";
-import { AspectRatio, Link } from "@/components/ui";
+
 import Image from "next/image";
+import Link from "@/components/ui/link";
+import AspectRatio from "@/components/ui/aspect-ratio";
 
 const CATEGORIES: Array<ProductCategory | "all"> = ["all", "haircut", "color", "styling", "treatment", "product"];
 
-export function StorePage() {
+export default function StorePage() {
 	const [search, setSearch] = useState("");
 	const [activeCategory, setActiveCategory] = useState<ProductCategory | "all">("all");
 
@@ -82,7 +86,13 @@ export function StorePage() {
 							)}
 						>
 							<AspectRatio ratio={4 / 3} className="overflow-hidden bg-muted">
-								<Image src={product.imageUrl} alt={product.name} className="size-full object-contain" loading="lazy" />
+								<Image
+									src={product.imageUrl}
+									alt={product.name}
+									fill
+									className="size-full object-contain"
+									loading="lazy"
+								/>
 							</AspectRatio>
 							<div className="space-y-1 p-4">
 								<div className="flex items-start justify-between gap-2">

@@ -12,7 +12,7 @@ import Input from "@/components/ui/input";
 
 // import { useSendOtp } from "@/features/auth/api";
 
-export function SignInPage() {
+export default function SignInPage() {
 	const router = useRouter();
 
 	// const { mutateAsync: sendOtp } = useSendOtp();

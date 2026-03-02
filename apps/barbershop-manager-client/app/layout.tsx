@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import QueryProvider from "@/lib/query-provider";
 
 const assistant = localFont({
@@ -11,7 +12,7 @@ const assistant = localFont({
 
 export const metadata: Metadata = {
 	title: "Barbershop Manager",
-	description: "A simple app to manage your barbershop bookings and services.",
+	description: "A simple app to manage your barbershop Appointments and services.",
 };
 
 export default function RootLayout({
@@ -22,7 +23,10 @@ export default function RootLayout({
 	return (
 		<html lang="en" className={assistant.variable}>
 			<body className="anti-aliased">
-				<QueryProvider>{children}</QueryProvider>
+				<QueryProvider>
+					<ReactQueryDevtools initialIsOpen={false} />
+					{children}
+				</QueryProvider>
 			</body>
 		</html>
 	);

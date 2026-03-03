@@ -1,6 +1,7 @@
-import type { Appointment} from "@barbershop-manager/types";
+import type { Appointment } from "@barbershop-manager/types";
 import { create } from "zustand";
 
+// TODO: DELETE THIS FILE - we don't need an appointments store.
 type AppointmentsActions = {
 	addAppointment: (appointment: Omit<Appointment, "id" | "createdAt" | "status">) => void;
 	cancelAppointment: (id: string) => void;

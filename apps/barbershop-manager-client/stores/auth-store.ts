@@ -1,6 +1,8 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { type User } from "@barbershop-manager/types";
+
+// TODO: DELETE THIS FILE - auth state will be handled by the server and cookies, not client-side state management.
 type AuthActions = {
 	login: (user: User) => void;
 	logout: () => void;

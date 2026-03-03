@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import QueryProvider from "@/lib/query-provider";
+import QueryProvider from "@/providers/query-provider";
 
 const assistant = localFont({
 	src: "./fonts/Assistant.ttf",

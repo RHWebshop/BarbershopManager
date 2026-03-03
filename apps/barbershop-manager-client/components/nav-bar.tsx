@@ -22,8 +22,6 @@ import Link from "./ui/link";
 import { useCartQuantity } from "@/stores/cart-store";
 import { ROUTES } from "@/data/generalData";
 
-
-
 const navLinkClass = (isActive: boolean) =>
 	cn(
 		"rounded-md px-4 py-2 text-sm font-medium transition-colors",
@@ -137,7 +135,7 @@ export default function Navbar() {
 								<SheetTitle className="sr-only">תפריט ניווט</SheetTitle>
 							</SheetHeader>
 							<ul className="flex flex-col gap-1 pt-6">
-								{NAV_ITEMS.map((item) => (
+								{ROUTES.map((item) => (
 									<li key={item.label}>
 										<Link
 											href={item.href}

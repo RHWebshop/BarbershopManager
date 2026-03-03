@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button";
 
 import Image from "next/image";
 import { useAppointments } from "@/stores/appointments-store";
-import { useCartActions } from "@/stores/cart-store";
 import Link from "@/components/ui/link";
 import AspectRatio from "@/components/ui/aspect-ratio";
 
@@ -34,7 +33,7 @@ function getGreeting() {
 // ── Component ─────────────────────────────────────────────────────────────────
 export default function HomePage() {
 	const appointments = useAppointments();
-	const { addToCart } = useCartActions();
+	// const { addToCart } = useCartActions();
 
 	// Next upcoming confirmed Appointment
 	const todayStr = new Date().toISOString().slice(0, 10);
@@ -78,7 +77,7 @@ export default function HomePage() {
 							</div>
 						</div>
 						<Button variant="outline" size="sm" asChild>
-							<Link href="/Appointment">כל התורים</Link>
+							<Link href="/appointments">כל התורים</Link>
 						</Button>
 					</div>
 				) : (
@@ -88,7 +87,7 @@ export default function HomePage() {
 							<p className="text-sm text-muted-foreground">קבע תור חדש עכשיו</p>
 						</div>
 						<Button asChild size="sm">
-							<Link href="/Appointment">קביעת תור</Link>
+							<Link href="/appointments/new">קביעת תור</Link>
 						</Button>
 					</div>
 				)}
@@ -129,7 +128,11 @@ export default function HomePage() {
 								</div>
 								<div className="mt-auto flex items-center justify-between">
 									<span className="text-lg font-bold">₪{product.price}</span>
-									<Button size="sm" variant="outline" onClick={() => addToCart(product)}>
+									<Button
+										size="sm"
+										variant="outline"
+										// onClick={() => addToCart(product)}
+									>
 										הוסף לעגלה
 									</Button>
 								</div>

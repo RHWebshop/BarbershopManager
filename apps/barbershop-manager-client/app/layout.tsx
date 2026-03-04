@@ -22,7 +22,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en" className={assistant.variable}>
-			<body className="anti-aliased">
+			<body className="anti-aliased" dir="rtl">
 				<QueryProvider>
 					<ReactQueryDevtools initialIsOpen={false} />
 					{children}

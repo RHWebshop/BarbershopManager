@@ -20,7 +20,7 @@ export default function Cart() {
 			</div>
 
 			<section className="grid grid-cols-1 gap-8 lg:grid-cols-[1fr_380px]">
-				{/* Left Column: Items */}
+				{/* Left Column: Products */}
 				<div className="space-y-4">
 					<ul className="divide-y divide-border rounded-xl border border-border bg-card shadow-sm">
 						{products.map(({ product, quantity }) => (
@@ -36,7 +36,7 @@ export default function Cart() {
 					</Button>
 				</div>
 
-				{/* Left Column: Summary & Policies */}
+				{/* Right Column: Summary & Policies */}
 				<section>
 					<div className="sticky top-20 space-y-6">
 						{/* Summary Card */}

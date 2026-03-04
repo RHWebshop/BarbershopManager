@@ -4,7 +4,7 @@ import { ArrowRightIcon, InfoIcon } from "lucide-react";
 import Link from "@/components/ui/link";
 
 import ProductContent from "@/components/product/product-content";
-// import { getQueryClient } from "@/lib/query-provider";
+// import { QueryClient } from "@tanstack/react-query";
 // import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 export default async function ProductPage({ params }: { params: Promise<{ productId: string }> }) {
 	const { productId } = await params;
@@ -12,8 +12,8 @@ export default async function ProductPage({ params }: { params: Promise<{ produc
 
 	// TODO: uncomment when we have a real API and react-query setup
 	/* 
-	const queryClient = getQueryClient();
-
+	
+	const queryClient = new QueryClient();
 	await queryClient.prefetchQuery({
 		queryKey: [productId, "product"],
 		queryFn: () => getProduct(productId),
@@ -34,8 +34,6 @@ export default async function ProductPage({ params }: { params: Promise<{ produc
 	}
 
 	return <ProductContent product={product} />;
-
-
 }
 
 const ProductNotFound = () => {

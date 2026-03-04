@@ -19,8 +19,8 @@ import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 
 import Link from "./ui/link";
-import { useCartQuantity } from "@/stores/cart-store";
 import { ROUTES } from "@/data/generalData";
+import { useCartQuantity } from "@/providers/cart-store-provider";
 
 const navLinkClass = (isActive: boolean) =>
 	cn(

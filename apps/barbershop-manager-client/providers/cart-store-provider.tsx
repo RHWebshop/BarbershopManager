@@ -17,6 +17,7 @@ export interface CartStoreProviderProps {
 
 // Create the store once per app render and provide it to the rest of the app via context.
 export const CartStoreProvider = ({ initialState, children }: CartStoreProviderProps) => {
+	console.log("Initializing CartStore with state:", initialState);
 	const [store] = useState(() => createCartStore(initialState));
 	return <CartStoreContext.Provider value={store}>{children}</CartStoreContext.Provider>;
 };
@@ -30,3 +31,20 @@ export const useCartStore = <T,>(selector: (store: CartStore) => T): T => {
 
 	return useStore(cartStoreContext, selector);
 };
+
+export const useCartActions = () => useCartStore((state) => state.actions);
+
+export const useCartProducts = () => useCartStore((state) => state.items);
+
+export const useCartQuantity = () => useCartStore((state) => state.items.reduce((sum, item) => sum + item.quantity, 0));
+
+export const useCartProductById = (productId: string) =>
+	useCartStore((state) => state.items.find((item) => item.product.id === productId)?.product ?? null);
+
+export const useCartProductQuantity = (productId: string) =>
+	useCartStore((state) => state.items.find((item) => item.product.id === productId)?.quantity ?? 0);
+
+export const useCartTotalProducts = () => useCartStore((state) => state.items.length);
+
+export const useCartPrice = () =>
+	useCartStore((state) => state.items.reduce((sum, item) => sum + item.product.price * item.quantity, 0));

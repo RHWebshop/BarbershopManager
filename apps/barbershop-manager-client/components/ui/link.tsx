@@ -1,6 +1,6 @@
 import NextLink, { LinkProps } from "next/link";
 interface CustomLinkProps extends LinkProps {
-	children: React.ReactNode;
+	children?: React.ReactNode;
 	className?: string;
 	external?: boolean; // new prop to indicate if the link is external
 }

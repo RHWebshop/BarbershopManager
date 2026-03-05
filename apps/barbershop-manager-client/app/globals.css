@@ -118,9 +118,9 @@
 	--radius-3xl: calc(var(--radius) + 12px);
 	--radius-4xl: calc(var(--radius) + 16px);
 	/* breakpoints */
-	--breakpoint-xs: 480px;
-	--breakpoint-2xs: 360px;
-	--breakpoint-3xl: 2000px;
+	--breakpoint-xs: 30rem;
+	--breakpoint-2xs: 22.5rem;
+	--breakpoint-3xl: 120rem;
 }
 html,
 body {
@@ -158,4 +158,31 @@ button:not(:disabled),
 	100% {
 		transform: translateX(100%) skewX(-60deg);
 	}
+}
+
+/* clamps (1920 - 2000 VW)*/
+
+/* 12 to 14 */
+.clamp-xs {
+	font-size: clamp(0.75rem, -2.25rem + 2.5vw, 0.875rem);
+}
+
+/* 14 to 16 */
+.clamp-sm {
+	font-size: clamp(0.875rem, -2.125rem + 2.5vw, 1rem);
+}
+
+/* 16 to 18 */
+.clamp-base {
+	font-size: clamp(1rem, -2rem + 2.5vw, 1.125rem);
+}
+
+/* 18 to 20 */
+.clamp-lg {
+	font-size: clamp(1.125rem, -1.875rem + 2.5vw, 1.25rem);
+}
+
+/* 20 to 24 */
+.clamp-xl {
+	font-size: clamp(1.25rem, -1.75rem + 2.5vw, 1.5rem);
 }

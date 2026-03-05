@@ -78,17 +78,16 @@ export default function Navbar() {
 				{/* Right side actions - Cart and User menu */}
 				<div className="flex items-center gap-2">
 					{/* Cart button - links to cart page */}
-					<Button variant="ghost" size="icon" className="relative" asChild>
+					<Button variant="ghost" size="icon" className="relative rounded-full size-10 p-2 " asChild>
 						<Link href="/cart">
-							<ShoppingCartIcon aria-hidden />
+							<ShoppingCartIcon aria-hidden className="size-6" />
 							{cartQuantity > 0 && (
-								<span className="absolute -top-1 -inset-e-1 flex size-5 items-center justify-center rounded-full bg-primary text-[10px] font-medium text-primary-foreground">
-									{cartQuantity}
+								<span className="absolute top-0 inset-e-0 flex size-5 items-center justify-center rounded-full bg-primary text-[10px] font-medium text-primary-foreground">
+									{cartQuantity > 9 ? "9+" : cartQuantity}
 								</span>
 							)}
 						</Link>
 					</Button>
-
 					{/* User / Login section */}
 					{/* {isAuthenticated ? (
 						<DropdownMenu>
@@ -122,7 +121,6 @@ export default function Navbar() {
 							<Link href="/sign-in">התחברות</Link>
 						</Button>
 					)} */}
-
 					{/* Mobile menu - Sheet */}
 					<Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
 						<SheetTrigger asChild>

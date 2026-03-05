@@ -10,18 +10,18 @@ export default function Footer() {
 				<div className="flex flex-col items-center justify-between gap-6 md:flex-row">
 					{/* Navigation Links */}
 					<nav className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
-						<Link href="/contact" className="text-sm text-muted-foreground transition-colors hover:text-primary">
+						<Link href="/contact" className="clamp-sm text-muted-foreground transition-colors hover:text-primary">
 							צור קשר
 						</Link>
-						<Link href="/accessibility" className="text-sm text-muted-foreground transition-colors hover:text-primary">
+						<Link href="/accessibility" className="clamp-sm text-muted-foreground transition-colors hover:text-primary">
 							הצהרת נגישות
 						</Link>
-						<Link href="/privacy" className="text-sm text-muted-foreground transition-colors hover:text-primary">
+						<Link href="/privacy" className="clamp-sm text-muted-foreground transition-colors hover:text-primary">
 							מדיניות פרטיות
 						</Link>
 						<Link
 							href="mailto:office@example.com"
-							className="flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
+							className="flex items-center gap-2 clamp-sm text-muted-foreground transition-colors hover:text-primary"
 						>
 							<MailIcon className="size-4" />
 							office@example.com
@@ -37,7 +37,7 @@ export default function Footer() {
 								className="text-muted-foreground transition-colors hover:text-primary"
 								aria-label="אינסטגרם"
 							>
-								<Instagram className="size-5" />
+								<Instagram className="size-6" />
 							</Link>
 							<Link
 								href="https://facebook.com"
@@ -45,13 +45,13 @@ export default function Footer() {
 								className="text-muted-foreground transition-colors hover:text-primary"
 								aria-label="פייסבוק"
 							>
-								<Facebook className="size-5" />
+								<Facebook className="size-6" />
 							</Link>
 						</div>
 
 						<div className="h-4 w-px bg-border hidden md:block" />
 
-						<p className="text-xs text-muted-foreground">© {currentYear} כל הזכויות שמורות</p>
+						<p className="clamp-xs text-muted-foreground">© {currentYear} כל הזכויות שמורות</p>
 					</div>
 				</div>
 			</div>

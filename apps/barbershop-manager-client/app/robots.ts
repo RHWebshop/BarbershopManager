@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
 			allow: "/",
 			disallow: ["/private/", "/admin/", "/cart/", "/appointments/", "/appointments/new", "/login/", "/register/"],
 		},
-		sitemap: `${process.env.NEXT_PUBLIC_BASE_URL}/sitemap.xml`,
+		sitemap: `${process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"}/sitemap.xml`,
 	};
 }

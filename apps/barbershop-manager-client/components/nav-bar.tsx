@@ -82,7 +82,7 @@ export default function Navbar() {
 						<Link href="/cart">
 							<ShoppingCartIcon aria-hidden className="size-6" />
 							{cartQuantity > 0 && (
-								<span className="absolute top-0 inset-e-0 flex size-5 items-center justify-center rounded-full bg-primary text-[10px] font-medium text-primary-foreground">
+								<span className="absolute top-0 inset-e-0 flex size-5 items-center justify-center rounded-full bg-primary text-sm font-medium text-primary-foreground">
 									{cartQuantity > 9 ? "9+" : cartQuantity}
 								</span>
 							)}

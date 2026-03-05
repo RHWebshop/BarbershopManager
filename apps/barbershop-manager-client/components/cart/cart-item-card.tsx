@@ -37,18 +37,20 @@ export default function CartItemCard({
 			</Link>
 
 			{/* Details */}
-			<div className="flex  flex-col gap-2  ">
-				<div className="flex items-start">
-					<Link
-						href={`/store/${product.id}`}
-						className="group text-xl transition duration-300  font-bold leading-tight hover:text-primary"
-					>
-						{product.name}
-						{/* underline effect */}
-						<span className="block max-w-0 group-hover:max-w-full transition-[max-width] duration-500 h-0.5 bg-primary"></span>
-					</Link>
+			<div className="h-full flex  flex-col gap-2  ">
+				<div className="flex flex-col flex-1">
+					<div className="flex items-start">
+						<Link
+							href={`/store/${product.id}`}
+							className="group text-lg  3xl:text-xl transition duration-300  font-bold leading-tight hover:text-primary"
+						>
+							{product.name}
+							{/* underline effect */}
+							<span className="block max-w-0 group-hover:max-w-full transition-[max-width] duration-500 h-0.5 bg-primary"></span>
+						</Link>
+					</div>
+					<p className=" text-muted-foreground text-sm 3xl:text-base flex-1 line-clamp-3">{product.description}</p>
 				</div>
-				<p className=" text-muted-foreground line-clamp-2">{product.description}</p>
 
 				<div className="flex  items-end justify-between gap-1 sm:gap-4">
 					<div className="flex items-center gap-1 overflow-hidden rounded-md border border-border bg-background shadow-sm">
@@ -84,10 +86,10 @@ export default function CartItemCard({
 					</div>
 
 					<div className="text-end">
-						<p className="text-sm text-muted-foreground" aria-hidden="true">
+						<p className="text-sm 3xl:text-base text-muted-foreground " aria-hidden="true">
 							₪{product.price}/יחידה
 						</p>
-						<p className="text-lg font-black text-primary">₪{product.price * quantity}</p>
+						<p className="text-lg 3xl:text-xl font-black text-primary">₪{product.price * quantity}</p>
 					</div>
 				</div>
 			</div>

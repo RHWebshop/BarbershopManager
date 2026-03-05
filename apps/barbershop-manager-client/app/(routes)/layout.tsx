@@ -25,7 +25,7 @@ export default async function RouteLayout({ children }: { children: React.ReactN
 		<CartStoreProvider initialState={cart}>
 			<div className="flex min-h-screen flex-col">
 				<Navbar />
-				<main className="mx-auto w-full max-w-6xl flex-1 px-4 py-20 md:px-6">{children}</main>
+				<main className="mx-auto w-full max-w-6xl flex-1 px-4 py-10 md:px-6">{children}</main>
 				<Footer />
 			</div>
 		</CartStoreProvider>

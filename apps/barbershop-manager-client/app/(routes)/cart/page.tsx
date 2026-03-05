@@ -1,6 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { ArrowLeftIcon } from "lucide-react";
+import { ArrowRightIcon } from "lucide-react";
 import Link from "@/components/ui/link";
 import { CartEmpty, CartItemCard, CartPolicies, CartSubHeader, CartSummary } from "@/components/cart";
 import { useCartProducts } from "@/providers/cart-store-provider";
@@ -14,6 +14,13 @@ export default function Cart() {
 
 	return (
 		<>
+			<Button variant="outline" asChild className="gap-2 mb-4">
+				<Link href="/store">
+					<ArrowRightIcon className="size-4" />
+					המשך בקניות
+				</Link>
+			</Button>
+
 			<div className="flex flex-col gap-2 mb-10 ">
 				<h1 className="text-4xl font-extrabold tracking-tight leading-none">עגלת קניות</h1>
 				<CartSubHeader />
@@ -27,13 +34,6 @@ export default function Cart() {
 							<CartItemCard key={product.id} product={product} quantity={quantity} index={index} />
 						))}
 					</ul>
-
-					<Button variant="outline" asChild className="gap-2">
-						<Link href="/store">
-							<ArrowLeftIcon className="size-4" />
-							המשך בקניות
-						</Link>
-					</Button>
 				</div>
 
 				{/* Right Column: Summary & Policies */}

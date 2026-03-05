@@ -22,9 +22,9 @@ export default function Cart() {
 			<section className="grid grid-cols-1 gap-8 lg:grid-cols-[1fr_380px]">
 				{/* Left Column: Products */}
 				<div className="space-y-4">
-					<ul className="divide-y divide-border rounded-xl border border-border bg-card shadow-sm">
-						{products.map(({ product, quantity }) => (
-							<CartItemCard key={product.id} product={product} quantity={quantity} />
+					<ul className="divide-y divide-border rounded-xl border border-border bg-card shadow-sm  ">
+						{products.map(({ product, quantity }, index) => (
+							<CartItemCard key={product.id} product={product} quantity={quantity} index={index} />
 						))}
 					</ul>
 

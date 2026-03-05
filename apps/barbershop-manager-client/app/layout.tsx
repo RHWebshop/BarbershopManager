@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+// import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import QueryProvider from "@/providers/query-provider";
 
 const assistant = localFont({
 	src: "./fonts/Assistant.ttf",
 	variable: "--font-assistant",
-	fallback: ["arial", "sans-serif"],
+	fallback: ["Arial", "sans-serif"],
 });
 
 export const metadata: Metadata = {
@@ -21,10 +21,10 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en" className={assistant.variable}>
-			<body className="anti-aliased" dir="rtl">
+		<html lang="he" className={assistant.variable}>
+			<body className="antialiased" dir="rtl">
 				<QueryProvider>
-					<ReactQueryDevtools initialIsOpen={false} />
+					{/* <ReactQueryDevtools initialIsOpen={false} /> */}
 					{children}
 				</QueryProvider>
 			</body>

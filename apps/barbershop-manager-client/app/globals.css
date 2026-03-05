@@ -133,13 +133,13 @@ button:not(:disabled),
 }
 
 /* Hide scrollbars globally while maintaining scroll functionality */
-/* *::-webkit-scrollbar {
+*::-webkit-scrollbar {
 	display: none;
 }
 
 * {
-	-ms-overflow-style: none; 
-} */
+	-ms-overflow-style: none;
+}
 
 @layer base {
 	* {
@@ -150,26 +150,11 @@ button:not(:disabled),
 	}
 }
 
-@keyframes shimmer-diagonal {
+@keyframes shimmer {
 	0% {
-		background-position: -180% -180%;
+		transform: translateX(-100%) skewX(-60deg);
 	}
 	100% {
-		background-position: 180% 180%;
+		transform: translateX(100%) skewX(-60deg);
 	}
-}
-
-.shimmer-diagonal {
-	background-image: linear-gradient(
-		135deg,
-		oklch(0.9 0.008 80 / 0) 0%,
-		oklch(0.9 0.008 80 / 0.2) 40%,
-		oklch(0.96 0.004 80 / 0.46) 50%,
-		oklch(0.9 0.008 80 / 0.2) 60%,
-		oklch(0.9 0.008 80 / 0) 100%
-	);
-	background-size: 260% 260%;
-	background-repeat: no-repeat;
-	animation: shimmer-diagonal 2s ease-in-out infinite;
-	will-change: background-position;
 }

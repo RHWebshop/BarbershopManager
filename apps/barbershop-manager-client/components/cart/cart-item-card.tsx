@@ -66,7 +66,7 @@ export default function CartItemCard({
 						</Button>
 
 						<span
-							className="min-w-10 select-none text-center text-sm font-bold"
+							className="min-w-10 select-none text-center clamp-sm font-bold"
 							aria-label={`כמות הפריט: ${quantity}`}
 							role="text"
 							title="כמות הפריט"

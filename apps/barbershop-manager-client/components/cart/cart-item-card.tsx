@@ -42,14 +42,14 @@ export default function CartItemCard({
 					<div className="flex items-start">
 						<Link
 							href={`/store/${product.id}`}
-							className="group text-lg  3xl:text-xl transition duration-300  font-bold leading-tight hover:text-primary"
+							className="group clamp-lg transition-colors duration-300  font-bold leading-tight hover:text-primary"
 						>
 							{product.name}
 							{/* underline effect */}
 							<span className="block max-w-0 group-hover:max-w-full transition-[max-width] duration-500 h-0.5 bg-primary"></span>
 						</Link>
 					</div>
-					<p className=" text-muted-foreground text-sm 3xl:text-base flex-1 line-clamp-3">{product.description}</p>
+					<p className=" text-muted-foreground clamp-sm flex-1 line-clamp-3">{product.description}</p>
 				</div>
 
 				<div className="flex  items-end justify-between gap-1 sm:gap-4">
@@ -62,7 +62,7 @@ export default function CartItemCard({
 							aria-label={quantity > 1 ? "הפחת כמות" : `הסר ${product.name}`}
 							title={quantity > 1 ? "הפחתה" : `הסרה`}
 						>
-							{quantity > 1 ? <MinusIcon className="size-3" /> : <Trash2 className="size-3 text-destructive " />}
+							{quantity > 1 ? <MinusIcon className="size-3 sm:size-4" /> : <Trash2 className="size-3 sm:size-4" />}
 						</Button>
 
 						<span
@@ -81,15 +81,15 @@ export default function CartItemCard({
 							aria-label="הוסף כמות"
 							title="הוספה"
 						>
-							<PlusIcon className="size-3" />
+							<PlusIcon className="size-3 sm:size-4" />
 						</Button>
 					</div>
 
 					<div className="text-end">
-						<p className="text-sm 3xl:text-base text-muted-foreground " aria-hidden="true">
+						<p className="clamp-sm text-muted-foreground " aria-hidden="true">
 							₪{product.price}/יחידה
 						</p>
-						<p className="text-lg 3xl:text-xl font-black text-primary">₪{product.price * quantity}</p>
+						<p className="clamp-lg font-black text-primary">₪{product.price * quantity}</p>
 					</div>
 				</div>
 			</div>

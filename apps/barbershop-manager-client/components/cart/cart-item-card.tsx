@@ -30,7 +30,7 @@ export default function CartItemCard({
 					loading={index > 4 ? "eager" : "lazy"}
 					src={product.imageUrl}
 					fill
-					sizes="(min-width: 640px) 150px, (min-width: 480px) 100px, (min-width: 360px) 80px, 64px"
+					sizes="(min-width: 640px) 150px, (min-width: 480px) 100px, 300px"
 					className="object-cover"
 					alt={"תמונת פריט"}
 				/>

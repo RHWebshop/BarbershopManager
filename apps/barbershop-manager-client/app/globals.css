@@ -76,6 +76,7 @@
 }
 
 @theme inline {
+	--default-font-family: var(--font-assistant);
 	--color-background: var(--background);
 	--color-foreground: var(--foreground);
 	--color-card: var(--card);

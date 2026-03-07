@@ -10,16 +10,29 @@ export default function Footer() {
 				<div className="flex flex-col items-center justify-between gap-6 md:flex-row">
 					{/* Navigation Links */}
 					<nav className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
-						<Link href="/contact" className="clamp-sm text-muted-foreground transition-colors hover:text-primary">
+						<Link
+							label="צור קשר"
+							href="/contact"
+							className="clamp-sm text-muted-foreground transition-colors hover:text-primary"
+						>
 							צור קשר
 						</Link>
-						<Link href="/accessibility" className="clamp-sm text-muted-foreground transition-colors hover:text-primary">
+						<Link
+							label="הצהרת נגישות"
+							href="/accessibility"
+							className="clamp-sm text-muted-foreground transition-colors hover:text-primary"
+						>
 							הצהרת נגישות
 						</Link>
-						<Link href="/privacy" className="clamp-sm text-muted-foreground transition-colors hover:text-primary">
+						<Link
+							label="מדיניות פרטיות"
+							href="/privacy"
+							className="clamp-sm text-muted-foreground transition-colors hover:text-primary"
+						>
 							מדיניות פרטיות
 						</Link>
 						<Link
+							label="אימייל"
 							href="mailto:office@example.com"
 							className="flex items-center gap-2 clamp-sm text-muted-foreground transition-colors hover:text-primary"
 						>
@@ -32,6 +45,7 @@ export default function Footer() {
 					<div className="flex items-center gap-6">
 						<div className="flex items-center gap-4">
 							<Link
+								label="אינסטגרם"
 								href="https://instagram.com"
 								external
 								className="text-muted-foreground transition-colors hover:text-primary"
@@ -40,6 +54,7 @@ export default function Footer() {
 								<Instagram className="size-6" />
 							</Link>
 							<Link
+								label="פייסבוק"
 								href="https://facebook.com"
 								external
 								className="text-muted-foreground transition-colors hover:text-primary"
@@ -51,7 +66,7 @@ export default function Footer() {
 
 						<div className="h-4 w-px bg-border hidden md:block" />
 
-						<p className="clamp-xs text-muted-foreground">© {currentYear} כל הזכויות שמורות</p>
+						<p className="clamp-sm text-muted-foreground">© {currentYear} כל הזכויות שמורות</p>
 					</div>
 				</div>
 			</div>

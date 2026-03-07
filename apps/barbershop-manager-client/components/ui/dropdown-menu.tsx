@@ -1,23 +1,35 @@
 "use client";
 
-import * as React from "react";
 import { CheckIcon, ChevronRightIcon, CircleIcon } from "lucide-react";
 import { DropdownMenu as DropdownMenuPrimitive } from "radix-ui";
 
 import { cn } from "@/lib/utils";
+import { createContext, useContext } from "react";
 
-function DropdownMenu({ ...props }: React.ComponentProps<typeof DropdownMenuPrimitive.Root>) {
-	return <DropdownMenuPrimitive.Root data-slot="dropdown-menu" {...props} />;
+const DropdownMenuContext = createContext<{ id: string } | null>(null);
+
+function useDropdownMenuId() {
+	const context = useContext(DropdownMenuContext);
+	if (!context) {
+		throw new Error("useDropdownMenuId must be used within a DropdownMenuProvider");
+	}
+	return context.id;
+}
+
+function DropdownMenu({ id, ...props }: React.ComponentProps<typeof DropdownMenuPrimitive.Root> & { id: string }) {
+	return (
+		<DropdownMenuContext.Provider value={{ id }}>
+			<DropdownMenuPrimitive.Root data-slot="dropdown-menu" {...props} />
+		</DropdownMenuContext.Provider>
+	);
 }
 
 function DropdownMenuPortal({ ...props }: React.ComponentProps<typeof DropdownMenuPrimitive.Portal>) {
 	return <DropdownMenuPrimitive.Portal data-slot="dropdown-menu-portal" {...props} />;
 }
 
-function DropdownMenuTrigger({
-	id,
-	...props
-}: React.ComponentProps<typeof DropdownMenuPrimitive.Trigger> & { id: string }) {
+function DropdownMenuTrigger({ ...props }: React.ComponentProps<typeof DropdownMenuPrimitive.Trigger>) {
+	const id = useDropdownMenuId();
 	return (
 		<DropdownMenuPrimitive.Trigger
 			data-slot="dropdown-menu-trigger"
@@ -29,18 +41,17 @@ function DropdownMenuTrigger({
 }
 
 function DropdownMenuContent({
-	id,
 	className,
 	sideOffset = 4,
 	...props
-}: React.ComponentProps<typeof DropdownMenuPrimitive.Content> & { id: string }) {
+}: React.ComponentProps<typeof DropdownMenuPrimitive.Content>) {
+	const id = useDropdownMenuId();
 	return (
 		<DropdownMenuPrimitive.Portal>
 			<DropdownMenuPrimitive.Content
 				data-slot="dropdown-menu-content"
 				id={`${id}-dropdown-menu-content`}
 				aria-labelledby={`${id}-dropdown-menu-trigger`}
-				aria-describedby={`${id}-dropdown-menu-description`}
 				sideOffset={sideOffset}
 				className={cn(
 					"bg-popover text-popover-foreground data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 z-50 max-h-(--radix-dropdown-menu-content-available-height) min-w-32 origin-(--radix-dropdown-menu-content-transform-origin) overflow-x-hidden overflow-y-auto rounded-md border p-1 shadow-md",

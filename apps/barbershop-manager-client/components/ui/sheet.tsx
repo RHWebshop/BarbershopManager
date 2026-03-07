@@ -1,16 +1,41 @@
-import * as React from "react";
 import { XIcon } from "lucide-react";
 import { Dialog as SheetPrimitive } from "radix-ui";
 
 import { cn } from "@/lib/utils";
+import { createContext, useContext, useState, useEffect } from "react";
 
-function Sheet({ ...props }: React.ComponentProps<typeof SheetPrimitive.Root>) {
-	return <SheetPrimitive.Root data-slot="sheet" {...props} />;
+type SheetContextValue = {
+	id: string;
+	hasDescription: boolean;
+	setHasDescription: (value: boolean) => void;
+};
+
+const SheetContext = createContext<SheetContextValue | null>(null);
+
+function useSheetContext() {
+	const context = useContext(SheetContext);
+	if (!context) throw new Error("Sheet components must be used within a <Sheet> with an id.");
+	return context;
 }
 
-function SheetTrigger({ id, ...props }: React.ComponentProps<typeof SheetPrimitive.Trigger> & { id: string }) {
+function Sheet({ id, ...props }: React.ComponentProps<typeof SheetPrimitive.Root> & { id: string }) {
+	const [hasDescription, setHasDescription] = useState(false);
 	return (
-		<SheetPrimitive.Trigger data-slot="sheet-trigger" id={`${id}-sheet-trigger`} aria-controls={`${id}-sheet-content`} {...props} />
+		<SheetContext.Provider value={{ id, hasDescription, setHasDescription }}>
+			<SheetPrimitive.Root data-slot="sheet" {...props} />
+		</SheetContext.Provider>
+	);
+}
+
+function SheetTrigger({ ...props }: React.ComponentProps<typeof SheetPrimitive.Trigger>) {
+	const { id } = useSheetContext();
+	return (
+		<SheetPrimitive.Trigger
+			data-slot="sheet-trigger"
+			id={`${id}-sheet-trigger`}
+			aria-controls={`${id}-sheet-content`}
+			{...props}
+		/>
 	);
 }
 
@@ -36,24 +61,23 @@ function SheetOverlay({ className, ...props }: React.ComponentProps<typeof Sheet
 }
 
 function SheetContent({
-	id,
 	className,
 	children,
 	side = "right",
 	showCloseButton = true,
 	...props
 }: React.ComponentProps<typeof SheetPrimitive.Content> & {
-	id: string;
 	side?: "top" | "right" | "bottom" | "left";
 	showCloseButton?: boolean;
 }) {
+	const { id, hasDescription } = useSheetContext();
 	return (
 		<SheetPortal>
 			<SheetOverlay />
 			<SheetPrimitive.Content
 				id={`${id}-sheet-content`}
 				aria-labelledby={`${id}-sheet-trigger`}
-				aria-describedby={`${id}-sheet-description`}
+				aria-describedby={hasDescription ? `${id}-sheet-description` : undefined}
 				data-slot="sheet-content"
 				className={cn(
 					"bg-background data-[state=open]:animate-in data-[state=closed]:animate-out fixed z-50 flex flex-col gap-4 shadow-lg transition ease-in-out data-[state=closed]:duration-300 data-[state=open]:duration-500",
@@ -100,9 +124,16 @@ function SheetTitle({ className, ...props }: React.ComponentProps<typeof SheetPr
 }
 
 function SheetDescription({ className, ...props }: React.ComponentProps<typeof SheetPrimitive.Description>) {
+	const { id, setHasDescription } = useSheetContext();
+	useEffect(() => {
+		console.log("setting hasDescription to true");
+		setHasDescription(true);
+		return () => setHasDescription(false);
+	}, [setHasDescription]); // just to shut up the linter
 	return (
 		<SheetPrimitive.Description
 			data-slot="sheet-description"
+			id={`${id}-sheet-description`}
 			className={cn("text-muted-foreground text-sm", className)}
 			{...props}
 		/>

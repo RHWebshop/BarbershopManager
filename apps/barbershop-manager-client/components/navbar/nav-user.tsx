@@ -24,13 +24,13 @@ export default function NavUser({ id }: { id: string }) {
 	return (
 		<div className="hidden xs:block">
 			{isAuthenticated ? (
-				<DropdownMenu>
-					<DropdownMenuTrigger asChild id={id}>
+				<DropdownMenu id={id}>
+					<DropdownMenuTrigger asChild >
 						<Button variant="ghost" size="icon" aria-label="תפריט משתמש">
 							<UserIcon aria-hidden />
 						</Button>
 					</DropdownMenuTrigger>
-					<DropdownMenuContent align="end" className="w-56" id={id}>
+					<DropdownMenuContent align="end" className="w-56" >
 						<DropdownMenuLabel>
 							<div className="flex flex-col space-y-1">
 								<p className="text-sm font-medium leading-none">שלום, {user?.name}</p>

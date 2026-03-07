@@ -6,9 +6,19 @@ import Link from "../ui/link";
 import { ROUTES } from "@/data/generalData";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 export default function NavSheet({ id }: { id: string }) {
 	const [open, setOpen] = useState(false);
+
+	useEffect(() => {
+		const media = matchMedia("(min-width: 480px)");
+		const handler = () => {
+			if (media.matches) setOpen(false);
+		};
+		media.addEventListener("change", handler);
+		return () => media.removeEventListener("change", handler);
+	}, []);
+
 	const pathname = usePathname();
 	const user = {
 		name: "משתמש לדוגמה",
@@ -20,17 +30,18 @@ export default function NavSheet({ id }: { id: string }) {
 	};
 	const isAuthenticated = true; // Replace with actual authentication state
 	return (
-		<Sheet open={open} onOpenChange={setOpen}>
-			<SheetTrigger asChild id={id}>
+		<Sheet id={id} open={open} onOpenChange={setOpen}>
+			<SheetTrigger asChild>
 				<Button variant="ghost" size="icon" className="xs:hidden" aria-label="פתח תפריט">
 					<MenuIcon aria-hidden />
 				</Button>
 			</SheetTrigger>
-			<SheetContent side="right" className="w-72" dir="rtl" id={id}>
+			<SheetContent side="right" className="w-72" dir="rtl">
 				<SheetHeader>
 					<SheetTitle className="sr-only">תפריט ניווט</SheetTitle>
 				</SheetHeader>
-				<ul className="flex flex-col gap-1 pt-6">
+
+				<ul className="flex flex-col flex-1 gap-1 pt-6">
 					{ROUTES.map((item) => (
 						<li key={item.label}>
 							<Link
@@ -51,7 +62,7 @@ export default function NavSheet({ id }: { id: string }) {
 					))}
 				</ul>
 				{isAuthenticated ? (
-					<div className="mt-6 border-t pt-4">
+					<div className=" border-t py-2">
 						<div className="px-4 py-2 text-sm text-foreground font-bold">שלום, {user?.name}</div>
 						<button
 							onClick={handleSignOut}

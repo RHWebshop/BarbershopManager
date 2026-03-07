@@ -2,6 +2,7 @@ import { cn } from "@/lib/utils";
 import Link from "../ui/link";
 import NavList from "./nav-list";
 import NavCart from "./nav-cart";
+
 import NavUser from "./nav-user";
 import NavSheet from "./nav-sheet";
 
@@ -16,7 +17,7 @@ export default function Navbar() {
 				aria-label="ניווט ראשי"
 			>
 				{/* Mobile menu - Sheet */}
-				<NavSheet />
+				<NavSheet id="nav" />
 				<div className=" gap-4 hidden xs:flex ">
 					{/* Logo */}
 					<Link
@@ -40,7 +41,7 @@ export default function Navbar() {
 					{/* Cart button - links to cart page */}
 					<NavCart />
 					{/* User / Login section */}
-					<NavUser />
+					<NavUser id="nav" />
 				</div>
 			</nav>
 		</header>

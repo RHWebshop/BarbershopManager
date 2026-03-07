@@ -7,7 +7,7 @@ import { ROUTES } from "@/data/generalData";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
-export default function NavSheet() {
+export default function NavSheet({ id }: { id: string }) {
 	const [open, setOpen] = useState(false);
 	const pathname = usePathname();
 	const user = {
@@ -21,12 +21,12 @@ export default function NavSheet() {
 	const isAuthenticated = true; // Replace with actual authentication state
 	return (
 		<Sheet open={open} onOpenChange={setOpen}>
-			<SheetTrigger asChild>
+			<SheetTrigger asChild id={id}>
 				<Button variant="ghost" size="icon" className="xs:hidden" aria-label="פתח תפריט">
 					<MenuIcon aria-hidden />
 				</Button>
 			</SheetTrigger>
-			<SheetContent side="right" className="w-72" dir="rtl">
+			<SheetContent side="right" className="w-72" dir="rtl" id={id}>
 				<SheetHeader>
 					<SheetTitle className="sr-only">תפריט ניווט</SheetTitle>
 				</SheetHeader>

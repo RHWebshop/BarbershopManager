@@ -11,7 +11,7 @@ import {
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-export default function NavUser() {
+export default function NavUser({ id }: { id: string }) {
 	const user = {
 		name: "משתמש לדוגמה",
 		phone: "050-1234567",
@@ -25,12 +25,12 @@ export default function NavUser() {
 		<div className="hidden xs:block">
 			{isAuthenticated ? (
 				<DropdownMenu>
-					<DropdownMenuTrigger asChild>
+					<DropdownMenuTrigger asChild id={id}>
 						<Button variant="ghost" size="icon" aria-label="תפריט משתמש">
 							<UserIcon aria-hidden />
 						</Button>
 					</DropdownMenuTrigger>
-					<DropdownMenuContent align="end" className="w-56">
+					<DropdownMenuContent align="end" className="w-56" id={id}>
 						<DropdownMenuLabel>
 							<div className="flex flex-col space-y-1">
 								<p className="text-sm font-medium leading-none">שלום, {user?.name}</p>

@@ -8,8 +8,10 @@ function Sheet({ ...props }: React.ComponentProps<typeof SheetPrimitive.Root>) {
 	return <SheetPrimitive.Root data-slot="sheet" {...props} />;
 }
 
-function SheetTrigger({ ...props }: React.ComponentProps<typeof SheetPrimitive.Trigger>) {
-	return <SheetPrimitive.Trigger data-slot="sheet-trigger" {...props} />;
+function SheetTrigger({ id, ...props }: React.ComponentProps<typeof SheetPrimitive.Trigger> & { id: string }) {
+	return (
+		<SheetPrimitive.Trigger data-slot="sheet-trigger" id={`${id}-sheet-trigger`} aria-controls={`${id}-sheet-content`} {...props} />
+	);
 }
 
 function SheetClose({ ...props }: React.ComponentProps<typeof SheetPrimitive.Close>) {
@@ -34,12 +36,14 @@ function SheetOverlay({ className, ...props }: React.ComponentProps<typeof Sheet
 }
 
 function SheetContent({
+	id,
 	className,
 	children,
 	side = "right",
 	showCloseButton = true,
 	...props
 }: React.ComponentProps<typeof SheetPrimitive.Content> & {
+	id: string;
 	side?: "top" | "right" | "bottom" | "left";
 	showCloseButton?: boolean;
 }) {
@@ -47,6 +51,9 @@ function SheetContent({
 		<SheetPortal>
 			<SheetOverlay />
 			<SheetPrimitive.Content
+				id={`${id}-sheet-content`}
+				aria-labelledby={`${id}-sheet-trigger`}
+				aria-describedby={`${id}-sheet-description`}
 				data-slot="sheet-content"
 				className={cn(
 					"bg-background data-[state=open]:animate-in data-[state=closed]:animate-out fixed z-50 flex flex-col gap-4 shadow-lg transition ease-in-out data-[state=closed]:duration-300 data-[state=open]:duration-500",

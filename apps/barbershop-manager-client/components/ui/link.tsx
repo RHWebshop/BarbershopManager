@@ -1,13 +1,18 @@
+import { cn } from "@/lib/utils";
 import NextLink, { LinkProps } from "next/link";
-interface CustomLinkProps extends LinkProps {
-	children?: React.ReactNode;
-	className?: string;
-	external?: boolean; // new prop to indicate if the link is external
+import { AnchorHTMLAttributes } from "react";
+interface CustomLinkProps extends LinkProps, Omit<AnchorHTMLAttributes<HTMLAnchorElement>, keyof LinkProps> {
+	label: string;
+	external?: boolean;
+	disabled?: boolean;
 }
-export default function Link({ children, className, external = false, ...props }: CustomLinkProps) {
+export default function Link({ children,label, className, external = false, disabled = false, ...props }: CustomLinkProps) {
 	return (
 		<NextLink
-			className={className}
+			title={label}
+			aria-label={label}
+			className={cn("aria-disabled:pointer-events-none", className)}
+			aria-disabled={disabled}
 			target={external ? "_blank" : undefined}
 			rel={external ? "noreferrer noopener" : undefined}
 			{...props}

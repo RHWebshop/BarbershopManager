@@ -30,7 +30,7 @@ export default function Navbar() {
 						)}
 						aria-label="חזרה לדף הבית"
 					>
-						<span className="clamp-xs font-medium">לוגו</span>
+						<span className="clamp-sm font-medium">לוגו</span>
 					</Link>
 					{/* Desktop nav items */}
 					<NavList />

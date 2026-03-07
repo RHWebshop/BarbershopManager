@@ -11,11 +11,8 @@ const getCart = async () => {
 };
 
 export default async function RouteLayout({ children }: { children: React.ReactNode }) {
-	// only check if the user is logged in, if not send them to the login page, otherwise they can see the app
-	// const user = useAuthStoreUser();
 	const queryClient = new QueryClient();
 
-	// fetch and cache the cart via TanStack Query, then pass the resolved cart to the provider
 	const cart = await queryClient.fetchQuery({
 		queryKey: ["cart"],
 		queryFn: getCart,

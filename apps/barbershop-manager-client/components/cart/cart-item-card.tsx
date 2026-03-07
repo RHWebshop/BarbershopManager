@@ -23,6 +23,7 @@ export default function CartItemCard({
 		>
 			{/* Product image */}
 			<Link
+				label={`לפריט: ${product.name}`}
 				href={`/store/${product.id}`}
 				className="relative w-full 2xs:w-auto aspect-square overflow-hidden rounded-lg"
 			>
@@ -32,7 +33,7 @@ export default function CartItemCard({
 					fill
 					sizes="(min-width: 640px) 150px, (min-width: 480px) 100px, 300px"
 					className="object-cover"
-					alt={"תמונת פריט"}
+					alt={`תמונת: ${product.name}`}
 				/>
 			</Link>
 
@@ -42,6 +43,7 @@ export default function CartItemCard({
 					<div className="flex items-start">
 						<Link
 							href={`/store/${product.id}`}
+							label={`לפריט: ${product.name}`}
 							className="group clamp-lg transition-colors duration-300  font-bold leading-tight hover:text-primary"
 						>
 							{product.name}

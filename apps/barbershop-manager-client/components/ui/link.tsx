@@ -6,10 +6,16 @@ interface CustomLinkProps extends LinkProps, Omit<AnchorHTMLAttributes<HTMLAncho
 	external?: boolean;
 	disabled?: boolean;
 }
-export default function Link({ children,label, className, external = false, disabled = false, ...props }: CustomLinkProps) {
+export default function Link({
+	children,
+	label,
+	className,
+	external = false,
+	disabled = false,
+	...props
+}: CustomLinkProps) {
 	return (
 		<NextLink
-			title={label}
 			aria-label={label}
 			className={cn("aria-disabled:pointer-events-none", className)}
 			aria-disabled={disabled}

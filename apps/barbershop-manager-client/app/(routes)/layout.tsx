@@ -1,5 +1,5 @@
 import Footer from "@/components/footer";
-import Navbar from "@/components/nav-bar";
+import Navbar from "@/components/navbar/nav-bar";
 import { CART_ITEMS } from "@/data/cartData";
 import { CartStoreProvider } from "@/providers/cart-store-provider";
 import { QueryClient } from "@tanstack/react-query";
